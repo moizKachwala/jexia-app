@@ -25,7 +25,9 @@ class StudentPage extends Component {
     render() {
         return (
             <table>
-                {this.renderRows()}
+                <tbody>
+                    {this.renderRows()}
+                </tbody>
             </table>
         );
     }

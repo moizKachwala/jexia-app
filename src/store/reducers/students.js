@@ -12,11 +12,16 @@ const initialStatusState = {
 };
 
 const initialState = {
-    students: [],
+    data: [],
     list: {
         ...initialStatusState,
     },
-    selectedUser: null,
+    create: {
+        ...initialStatusState,
+    },
+    update: {
+        ...initialStatusState,
+    },
 };
 
 export default createReducer(initialState, {
@@ -26,12 +31,12 @@ export default createReducer(initialState, {
             pending: true,
         },
     }),
-    [STUDENTS_LIST_FULFILLED]: (state, payload) => ({
+    [STUDENTS_LIST_FULFILLED]: (state, students) => ({
         ...state,
         list: {
             ...initialStatusState,
         },
-        students: payload,
+        data: students,
     }),
     [STUDENTS_LIST_REJECTED]: (state, errorMessage) => ({
         ...state,

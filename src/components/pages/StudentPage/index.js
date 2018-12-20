@@ -6,7 +6,7 @@ import {list} from '../../../store/actions/students';
 
 export const StudentPage = connect(
     (state) => ({
-        students: state.students.students
+        students: state.students.data
     }),
     (dispatch) => ({
         actions: bindActionCreators({
