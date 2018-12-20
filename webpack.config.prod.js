@@ -10,7 +10,7 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 export default {
   bail: true,
   devtool: shouldUseSourceMap ? 'source-map' : false,
-  entry: ['./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
 
   output: {
     path: path.join(__dirname, 'public'),

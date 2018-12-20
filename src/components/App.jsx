@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import StudentPage from './pages/StudentPage/StudentPage.jsx';
+import {StudentPage} from './pages/StudentPage';
 
 class Root extends Component {
   render() {

@@ -36,11 +36,14 @@
     "react-router-redux": "4.0.8",
     "redux": "3.7.2",
     "redux-form": "7.3.0",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "redux-saga": "0.16.0",
+    "reselect": "2.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^9.0.2",
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.0.16",
     "babel-core": "^6.26.0",
     "babel-eslint": "8.1.2",
     "babel-loader": "^6.2.1",
