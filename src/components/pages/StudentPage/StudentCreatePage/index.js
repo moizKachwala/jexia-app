@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {push as pushHistory} from 'react-router-redux';
 
 import StudentCreatePageComponent from './StudentCreatePage.jsx';
 import studentCreateForm from '../../../../store/forms/studentCreateForm';
@@ -15,7 +14,6 @@ export const StudentCreatePage = connect(
     (dispatch) => ({
         actions: bindActionCreators({
             studentCreate: create,
-            pushHistory,
         }, dispatch)
     })
 )(studentCreateForm(StudentCreatePageComponent));
