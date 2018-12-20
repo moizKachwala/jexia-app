@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {StudentCreatePage} from './StudentCreatePage';
 
 class StudentPage extends Component {
 
@@ -24,11 +25,14 @@ class StudentPage extends Component {
 
     render() {
         return (
-            <table>
-                <tbody>
-                    {this.renderRows()}
-                </tbody>
-            </table>
+            <div>
+                <table className="table">
+                    <tbody>
+                        {this.renderRows()}
+                    </tbody>
+                </table>
+                <StudentCreatePage />
+            </div>
         );
     }
 }
