@@ -1,4 +1,4 @@
-import {METHOD_GET, HEADERS_JSON_SEND} from '../constants/api';
+import {METHOD_GET, HEADERS_JSON_SEND, METHOD_POST, HEADERS_JSON_SEND_RECEIVE} from '../constants/api';
 import {apiHandleResponse} from '../../util/api';
 
 const getStudents = () => {
@@ -8,6 +8,14 @@ const getStudents = () => {
     }).then(apiHandleResponse);
 };
 
+const createStudent = () => {
+    return fetch('http://demo5103770.mockable.io/users', {
+        method: METHOD_POST,
+        headers:{ HEADERS_JSON_SEND_RECEIVE }
+    }).then(apiHandleResponse);
+};
+
 export {
     getStudents,
+    createStudent,
 };

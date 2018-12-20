@@ -3,8 +3,8 @@ import {bindActionCreators} from 'redux';
 import {push as pushHistory} from 'react-router-redux';
 
 import StudentCreatePageComponent from './StudentCreatePage.jsx';
-import bookCreateForm from '../../../../store/forms/bookCreateForm';
-// import {create} from '../../../../store/actions/books';
+import studentCreateForm from '../../../../store/forms/studentCreateForm';
+import {create} from '../../../../store/actions/students';
 
 // const selectedBook = (paramId, collection) => collection.find(({id}) => id === paramId);
 
@@ -14,8 +14,8 @@ export const StudentCreatePage = connect(
     }),
     (dispatch) => ({
         actions: bindActionCreators({
-            //bookCreate: create,
+            studentCreate: create,
             pushHistory,
         }, dispatch)
     })
-)(bookCreateForm(StudentCreatePageComponent));
+)(studentCreateForm(StudentCreatePageComponent));

@@ -1,9 +1,5 @@
 import {createReducer} from '../../util';
-import {
-    STUDENTS_LIST_PENDING,
-    STUDENTS_LIST_FULFILLED,
-    STUDENTS_LIST_REJECTED
-} from '../actions/students';
+import * as actions from '../actions/students';
 
 const initialStatusState = {
     error: false,
@@ -25,22 +21,43 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-    [STUDENTS_LIST_PENDING]: (state) => ({ 
+    [actions.STUDENTS_LIST_PENDING]: (state) => ({ 
         ...state, 
         list: {
             pending: true,
         },
     }),
-    [STUDENTS_LIST_FULFILLED]: (state, students) => ({
+    [actions.STUDENTS_LIST_FULFILLED]: (state, students) => ({
         ...state,
         list: {
             ...initialStatusState,
         },
         data: students,
     }),
-    [STUDENTS_LIST_REJECTED]: (state, errorMessage) => ({
+    [actions.STUDENTS_LIST_REJECTED]: (state, errorMessage) => ({
         ...state,
         list: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+
+    [actions.STUDENTS_CREATE_PENDING]: (state) => ({ 
+        ...state, 
+        create: {
+            pending: true,
+        },
+    }),
+    [actions.STUDENTS_CREATE_FULFILLED]: (state) => ({
+        ...state,
+        create: {
+            ...initialStatusState,
+        }
+    }),
+    [actions.STUDENTS_CREATE_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        create: {
             ...initialStatusState,
             error: true,
             errorMessage,

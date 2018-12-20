@@ -15,6 +15,19 @@ function *list() {
     }
 }
 
+function *create(action) {
+    try {
+        yield put({type: actions.STUDENTS_CREATE_PENDING});
+        const {student} = action.payload;
+        const payload = yield call(API.createStudent, student);
+        yield put({type: actions.STUDENTS_CREATE_FULFILLED, payload});
+    }
+    catch (error) {
+        yield put({type: actions.STUDENTS_CREATE_REJECTED});
+    }
+}
+
 export default function *() {
     yield takeEvery(actions.STUDENTS_LIST, list);
+    yield takeEvery(actions.STUDENTS_CREATE, create);
 }

@@ -4,14 +4,18 @@ export const STUDENTS_LIST_PENDING = 'STUDENTS_LIST_PENDING';
 export const STUDENTS_LIST_FULFILLED = 'STUDENTS_LIST_FULFILLED';
 export const STUDENTS_LIST_REJECTED = 'STUDENTS_LIST_REJECTED';
 
-export const STUDENT_SELECTED = 'STUDENT_SELECTED';
 export const STUDENTS_CREATE = 'STUDENTS_CREATE';
+export const STUDENTS_CREATE_PENDING = 'STUDENTS_CREATE_PENDING';
+export const STUDENTS_CREATE_FULFILLED = 'STUDENTS_CREATE_FULFILLED';
+export const STUDENTS_CREATE_REJECTED = 'STUDENTS_CREATE_REJECTED';
+
+export const STUDENT_SELECTED = 'STUDENT_SELECTED';
 
 export const list = () => ({
     type: STUDENTS_LIST,
 });
 
-// export const create = (book) => ({
-//     type: BOOKS_CREATE,
-//     payload: {book},
-// });
+export const create = (student) => ({
+    type: STUDENTS_CREATE,
+    payload: {student},
+});
