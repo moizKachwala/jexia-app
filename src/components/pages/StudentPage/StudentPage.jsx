@@ -14,7 +14,7 @@ class StudentPage extends Component {
 
     renderRows() {
         const {students} = this.props;
-        return students.map(({id, name}) => (
+        return students && students.map(({id, name}) => (
             <tr key={id}>
                 <td>{id}</td>
                 <td>{name}</td>

@@ -1,19 +1,44 @@
 import {createReducer} from '../../util';
-import {STUDENTS_LIST} from '../actions/students';
+import {
+    STUDENTS_LIST_PENDING,
+    STUDENTS_LIST_FULFILLED,
+    STUDENTS_LIST_REJECTED
+} from '../actions/students';
+
+const initialStatusState = {
+    error: false,
+    errorMessage: null,
+    pending: false,
+};
 
 const initialState = {
-    data:[],
-    selectedBook: null,
+    students: [],
+    list: {
+        ...initialStatusState,
+    },
+    selectedUser: null,
 };
 
 export default createReducer(initialState, {
-    [STUDENTS_LIST]: (state, payload) => ({ 
+    [STUDENTS_LIST_PENDING]: (state) => ({ 
         ...state, 
-        data: [
-            { id: 1, name: 'Javascript The good parts', pages: 100 },
-            { id: 2, name: 'Harry Potter', pages: 239 },
-            { id: 3, name: 'The dark Hour', pages: 200 },
-            { id: 4, name: 'Nothing Specific', pages: 789 },
-            ]
-        }),
+        list: {
+            pending: true,
+        },
+    }),
+    [STUDENTS_LIST_FULFILLED]: (state, payload) => ({
+        ...state,
+        list: {
+            ...initialStatusState,
+        },
+        students: payload,
+    }),
+    [STUDENTS_LIST_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        list: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
 });
