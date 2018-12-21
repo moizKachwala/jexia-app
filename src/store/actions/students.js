@@ -9,7 +9,7 @@ export const STUDENTS_CREATE_PENDING = 'STUDENTS_CREATE_PENDING';
 export const STUDENTS_CREATE_FULFILLED = 'STUDENTS_CREATE_FULFILLED';
 export const STUDENTS_CREATE_REJECTED = 'STUDENTS_CREATE_REJECTED';
 
-export const STUDENT_SELECTED = 'STUDENT_SELECTED';
+export const STUDENTS_SELECTED = 'STUDENTS_SELECTED';
 
 export const list = () => ({
     type: STUDENTS_LIST,
@@ -18,4 +18,9 @@ export const list = () => ({
 export const create = (student) => ({
     type: STUDENTS_CREATE,
     payload: {student},
+});
+
+export const select = (student) => ({
+    type: STUDENTS_SELECTED,
+    payload: student
 });

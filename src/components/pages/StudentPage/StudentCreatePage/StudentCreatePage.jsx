@@ -33,7 +33,6 @@ class StudentCreatePage extends Component {
         const {pristine, handleSubmit, submitting} = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
-                <h1>Add new Book</h1>
                 <div className="col-md-6">
                     <Field 
                         type="text"

@@ -9,6 +9,7 @@ const initialStatusState = {
 
 const initialState = {
     data: [],
+    selectedStudent: null,
     list: {
         ...initialStatusState,
     },
@@ -62,5 +63,8 @@ export default createReducer(initialState, {
             error: true,
             errorMessage,
         },
+    }),
+    [actions.STUDENTS_SELECTED]: (state, payload) => ({
+        ...state, selectedStudent: payload
     }),
 });
