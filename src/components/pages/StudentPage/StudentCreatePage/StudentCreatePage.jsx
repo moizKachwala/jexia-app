@@ -11,55 +11,64 @@ class StudentCreatePage extends Component {
         super(props);
 
         this.submit = this.submit.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
     }
 
     submit(props) {
-        const {bookName, pages} = props;
+        const {firstName, lastName, dateOfBirth, nationality} = props;
         const {actions: {studentCreate}} = this.props;
 
-        studentCreate({id:5, title: bookName, pages});
-        // alert(`Book ${bookName} saved successfully`);
-
-        //pushHistory('/books');
-    }
-
-    handleCancel() {
-        const {actions: {pushHistory}} = this.props;
-        pushHistory('/books');
+        studentCreate({firstName, lastName, dateOfBirth, nationality});
+        alert(`Book ${firstName} saved successfully`);
     }
 
     render() {
-        const {pristine, handleSubmit, submitting} = this.props;
+        const {pristine, handleSubmit, submitting, handleCancel} = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
-                <div className="col-md-6">
-                    <Field 
-                        type="text"
-                        label="Book Name" 
-                        component={TextInput} 
-                        name="bookName"
-                        placeholder="Book Name"
-                    />
-                    <Field
-                        type="text"
-                        label="Page Count"
-                        component={TextInput}
-                        name="pages"
-                    />
-                    <Button 
-                        type="submit"
-                        disabled={pristine || submitting} 
-                        theme="primary"
-                        onClick={noop}
-                    >
-                        Submit
-                    </Button>
-                    <Button
-                        onClick={this.handleCancel}
-                    >
-                        Cancel 
-                    </Button>
+                <div className="row">
+                    <div className="col-md-12">
+                        <Field 
+                            type="text"
+                            label="First Name" 
+                            component={TextInput} 
+                            name="firstName"
+                            placeholder="First Name"
+                        />
+                        <Field
+                            type="text"
+                            label="Last Name" 
+                            component={TextInput} 
+                            name="lastName"
+                            placeholder="Last Name"
+                        />
+                        <Field
+                            type="text"
+                            label="Date of birth" 
+                            component={TextInput} 
+                            name="dateOfBirth"
+                            placeholder="Date of birth"
+                        />
+                        <Field
+                            type="text"
+                            label="Nationality" 
+                            component={TextInput} 
+                            name="nationality"
+                            placeholder="Nationality"   
+                        />
+                        <Button 
+                            type="submit"
+                            disabled={pristine || submitting} 
+                            theme="primary"
+                            onClick={noop}
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            onClick={handleCancel}
+                        >
+                            Cancel 
+                        </Button>
+                    </div>
                 </div>
             </form>
         );

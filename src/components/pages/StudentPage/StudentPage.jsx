@@ -37,9 +37,11 @@ class StudentPage extends Component {
   renderRows() {
     const { students } = this.props;
     return students && students.map((student) => (
-      <tr key={student.id}>
-        <td>{student.id}</td>
-        <td>{student.name}</td>
+      <tr key={student.ID}>
+        <td>{student.ID}</td>
+        <td>{student.firstName}</td>
+        <td>{student.lastName}</td>
+        <td>{student.dateOfBirth}</td>
         <td><Button onClick={() => this.selectStudent(student)}>Edit</Button></td>
       </tr>
     ));
@@ -66,11 +68,11 @@ class StudentPage extends Component {
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentCreatePage />
+            <StudentCreatePage handleCancel={this.handleClose} />
           </Modal.Body>
-          <Modal.Footer>
+          {/* <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </div>
     );

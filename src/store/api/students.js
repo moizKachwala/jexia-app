@@ -2,16 +2,17 @@ import {METHOD_GET, HEADERS_JSON_SEND, METHOD_POST, HEADERS_JSON_SEND_RECEIVE} f
 import {apiHandleResponse} from '../../util/api';
 
 const getStudents = () => {
-    return fetch('http://demo5103770.mockable.io/users', {
+    return fetch('http://localhost:8088/api/Students', {
         method: METHOD_GET,
-        headers:{ HEADERS_JSON_SEND }
+        headers: HEADERS_JSON_SEND,
     }).then(apiHandleResponse);
 };
 
-const createStudent = () => {
-    return fetch('http://demo5103770.mockable.io/users', {
+const createStudent = (student) => {
+    return fetch('http://localhost:8088/api/Students', {
         method: METHOD_POST,
-        headers:{ HEADERS_JSON_SEND_RECEIVE }
+        headers:HEADERS_JSON_SEND_RECEIVE,
+        body: JSON.stringify(student)
     }).then(apiHandleResponse);
 };
 
