@@ -19,10 +19,10 @@ class StudentCreatePage extends Component {
     }
 
     submit(props) {
-        const { firstName, lastName, dateOfBirth, nationality } = props;
+        const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
         const { actions: { studentCreate } } = this.props;
 
-        studentCreate({ firstName, lastName, dateOfBirth, nationality });
+        studentCreate({ firstName, lastName, dateOfBirth, nationality, familyMembers });
         alert(`Book ${firstName} saved successfully`);
     }
 

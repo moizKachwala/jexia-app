@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import {takeEvery, put, call} from 'redux-saga/effects';
+import {takeEvery, put, call, all} from 'redux-saga/effects';
 
 import * as actions from '../actions/students';
 import * as API from '../api/students';
@@ -19,8 +19,18 @@ function *create(action) {
     try {
         yield put({type: actions.STUDENTS_CREATE_PENDING});
         const {student} = action.payload;
-        const payload = yield call(API.createStudent, student);
-        yield put({type: actions.STUDENTS_CREATE_FULFILLED, payload});
+        const {familyMembers} = student; //TODO
+        //creating new student
+        const newStudent = yield call(API.createStudent, student);        
+        //setting nationality
+        yield call(API.setStudentNationality, newStudent.ID, 1);
+        //creating family member.
+        const calls = [];
+        familyMembers.forEach(familyMember => {
+            calls.push(call(API.createFamilyMember, newStudent.ID, familyMember));
+        });
+        yield all(calls);
+        yield put({type: actions.STUDENTS_CREATE_FULFILLED, newStudent});
     }
     catch (error) {
         yield put({type: actions.STUDENTS_CREATE_REJECTED});
