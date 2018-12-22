@@ -15,6 +15,6 @@ const validate = ({bookName, pages}) => {
 };
 
 export default reduxForm({
-    form: 'book-create',
+    form: 'student-create',
     validate,
 });

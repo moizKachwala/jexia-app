@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Field } from 'redux-form';
+import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
 
 import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
+import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
 
 class StudentCreatePage extends Component {
 
@@ -26,7 +27,7 @@ class StudentCreatePage extends Component {
     }
 
     render() {
-        const { pristine, handleSubmit, submitting, handleCancel } = this.props;
+        const { pristine, handleSubmit, submitting, handleCancel, formValueSelector } = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="row">
@@ -58,6 +59,11 @@ class StudentCreatePage extends Component {
                             component={TextInput}
                             name="nationality"
                             placeholder="Nationality"
+                        />
+                        <FieldArray
+                            name="familyMembers"
+                            component={FamilyFieldArray}
+                            formValueSelector={formValueSelector}
                         />
                     </div>
                     <div className="col-md-12">
