@@ -2,28 +2,38 @@ import React, { Component } from 'react';
 import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
 
+import DatePicker from "react-datepicker";
+import moment from 'moment';
 import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
 import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
+import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 
 class StudentCreatePage extends Component {
 
     constructor(props) {
         super(props);
 
-        this.submit = this.submit.bind(this);
-
         this.state = {
             familyMembers: [],
+            startDate: moment(),
         };
+
+        this.submit = this.submit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
+
+    handleChange(date) {
+        this.setState({
+          startDate: date
+        });
+      }
 
     submit(props) {
         const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
         const { actions: { studentCreate } } = this.props;
 
         studentCreate({ firstName, lastName, dateOfBirth, nationality, familyMembers });
-        alert(`Book ${firstName} saved successfully`);
     }
 
     render() {
@@ -47,9 +57,8 @@ class StudentCreatePage extends Component {
                             placeholder="Last Name"
                         />
                         <Field
-                            type="text"
                             label="Date of birth"
-                            component={TextInput}
+                            component={CustomDatePicker}
                             name="dateOfBirth"
                             placeholder="Date of birth"
                         />

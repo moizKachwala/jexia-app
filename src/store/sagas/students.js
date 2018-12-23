@@ -20,11 +20,14 @@ function *create(action) {
         yield put({type: actions.STUDENTS_CREATE_PENDING});
         const {student} = action.payload;
         const {familyMembers} = student; //TODO
+
         //creating new student
         const newStudent = yield call(API.createStudent, student);        
+
         //setting nationality
         yield call(API.setStudentNationality, newStudent.ID, 1);
-        //creating family member.
+
+        //creating family members.
         const calls = [];
         familyMembers.forEach(familyMember => {
             calls.push(call(API.createFamilyMember, newStudent.ID, familyMember));
