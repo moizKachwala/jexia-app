@@ -8,6 +8,7 @@ import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
 import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
 import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
+import SelectField from '../../../common/SelectField/SelectField.jsx';
 
 class StudentCreatePage extends Component {
 
@@ -20,14 +21,7 @@ class StudentCreatePage extends Component {
         };
 
         this.submit = this.submit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
-
-    handleChange(date) {
-        this.setState({
-          startDate: date
-        });
-      }
 
     submit(props) {
         const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
@@ -38,6 +32,7 @@ class StudentCreatePage extends Component {
 
     render() {
         const { pristine, handleSubmit, submitting, handleCancel, formValueSelector } = this.props;
+      
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="row">
@@ -63,9 +58,13 @@ class StudentCreatePage extends Component {
                             placeholder="Date of birth"
                         />
                         <Field
-                            type="text"
                             label="Nationality"
-                            component={TextInput}
+                            component={SelectField}
+                            options={[
+                                {value: 'option-1', label: 'Option 1'},
+                                {value: 'option-2', label: 'Option 2'},
+                                {value: 'option-3', label: 'Option 3'},
+                            ]}
                             name="nationality"
                             placeholder="Nationality"
                         />
