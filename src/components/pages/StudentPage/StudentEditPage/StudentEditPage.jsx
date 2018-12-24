@@ -11,7 +11,7 @@ import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
 import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 import SelectField from '../../../common/SelectField/SelectField.jsx';
 
-class StudentCreatePage extends Component {
+class StudentEditPage extends Component {
 
     constructor(props) {
         super(props);
@@ -140,4 +140,4 @@ class StudentCreatePage extends Component {
     }
 }
 
-export default StudentCreatePage;
+export default StudentEditPage;

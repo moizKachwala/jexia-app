@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StudentCreatePage } from './StudentCreatePage';
+import { StudentEditPage } from './StudentEditPage';
 import { Modal, Button, OverlayTrigger, Table, PageHeader } from 'react-bootstrap';
 
 class StudentPage extends Component {
@@ -21,9 +21,7 @@ class StudentPage extends Component {
   }
 
   handleClose() {
-    // const {actions: {studentReset}} = this.props;
     this.setState({ show: false });
-    // studentReset();
   }
 
   handleShow() {
@@ -70,7 +68,7 @@ class StudentPage extends Component {
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentCreatePage handleCancel={this.handleClose} />
+            <StudentEditPage handleCancel={this.handleClose} />
           </Modal.Body>
           {/* <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>

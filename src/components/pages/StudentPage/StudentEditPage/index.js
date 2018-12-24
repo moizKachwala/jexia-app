@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {formValueSelector} from 'redux-form';
 
-import StudentCreatePageComponent from './StudentCreatePage.jsx';
+import StudentEditPageComponent from './StudentEditPage.jsx';
 import studentCreateForm from '../../../../store/forms/studentCreateForm';
 import {create, get, update, reset} from '../../../../store/actions/students';
 import {list} from '../../../../store/actions/nationalities';
@@ -37,7 +37,7 @@ const selectStudentForm = createSelector(
     }
 );
 
-export const StudentCreatePage = connect(
+export const StudentEditPage = connect(
     (state, props) => ({
         formValueSelector: (field) => formValueSelector('student-create')(state, field),
         isEdit: selectSelectedStudent(state),
@@ -54,4 +54,4 @@ export const StudentCreatePage = connect(
             studentsReset: reset,
         }, dispatch)
     })
-)(studentCreateForm(StudentCreatePageComponent));
+)(studentCreateForm(StudentEditPageComponent));
