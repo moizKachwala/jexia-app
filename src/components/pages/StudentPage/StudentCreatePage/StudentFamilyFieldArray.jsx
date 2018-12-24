@@ -22,11 +22,6 @@ class FamilyFieldArray extends Component {
         super();
     }
 
-    renderMoiz(member, index) {
-        console.log(member);
-        console.log(index);
-    }
-
     renderFamilyMember(member, index) {
         const { formValueSelector, fields, nationalities } = this.props;
         const id = formValueSelector(`${member}.id`);
@@ -118,7 +113,6 @@ class FamilyFieldArray extends Component {
                 </div>
                 <div>
                     {fields.map((member, index) => this.renderFamilyMember(member, index))}
-                    {/* {fields.map((member, index) => this.renderMoiz(member, index))} */}
                 </div>
             </div>
         );

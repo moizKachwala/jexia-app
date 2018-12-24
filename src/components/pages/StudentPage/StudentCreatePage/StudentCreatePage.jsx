@@ -17,7 +17,6 @@ class StudentCreatePage extends Component {
         super(props);
 
         this.state = {
-            familyMembers: [],
             startDate: moment(),
         };
 
@@ -45,10 +44,10 @@ class StudentCreatePage extends Component {
         this.selectInitialize(this.props);
     }
 
-    // componentWillUnmount() {
-    //     const {actions} = this.props;
-    //     actions.studentsReset();
-    // }
+    componentWillUnmount() {
+        const {actions} = this.props;
+        actions.studentsReset();
+    }
 
     submit(props) {
         const { ID, firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
