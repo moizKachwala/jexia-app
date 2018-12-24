@@ -23,12 +23,20 @@ function *get(action) {
         const {nationality} = yield call(API.getStudentNationality, studentId);
         const familyMembers = yield call(API.getFamilyMembersByStudentId, studentId);
 
+        //TODO name change logic
+        const newFamilyMembers = familyMembers.map((family) => {
+            return {
+                ...family,
+                nationality: family.nationality.ID
+            };
+        });
+
         const payload = {
             ...{
                 ...student,
-                nationality,
+                nationality: nationality.ID,
             },
-            familyMembers: {...familyMembers},
+            familyMembers: [...newFamilyMembers],
         };
         yield put({type: actions.STUDENTS_GET_FULFILLED, payload});
     }

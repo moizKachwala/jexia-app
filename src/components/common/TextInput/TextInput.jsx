@@ -18,18 +18,16 @@ class TextInput extends Component {
     }
 
     render() {
-        const {label, type, readOnly, placeholder, input ={}} = this.props;
-        const {name: inputName, onChange} = input;
+        const {label, type, readOnly, placeholder, input = {}} = this.props;
         return (
             <div className="form-group">
                 <label>{label}</label>
-                <input
-                    type={type}
-                    readOnly={readOnly}
-                    placeholder={placeholder}
+                <input 
+                    {...input}
                     className="form-control"
-                    name={inputName}
-                    onChange={onChange}
+                    placeholder={placeholder}
+                    readOnly={readOnly}
+                    type={type}
                 />
             </div>
         );
@@ -37,3 +35,18 @@ class TextInput extends Component {
 }
 
 export default TextInput;
+
+// import React from 'react';
+// export const TextInput = ({ label, input }) => {
+//   return (
+//     <div>
+//       <div>
+//         {label}
+//       </div>
+//       <div>
+//         <input {...input} placeholder={label} type="text" />
+//       </div>
+//     </div>
+//   );
+// }
+// export default TextInput;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
+import {createSelector} from 'reselect';
 
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -21,15 +22,33 @@ class StudentCreatePage extends Component {
         };
 
         this.submit = this.submit.bind(this);
+
+        this.selectInitialize = createSelector(
+            (props) => props.initialValues,
+            (initialValues) => {
+                const {initialize} = this.props;
+                initialize({...initialValues});
+            }
+        );
     }
 
     componentDidMount() {
         const {actions: {studentGet, nationalitiesList}, isEdit} = this.props;
         if(isEdit) {
-            studentGet(isEdit.ID);
+            studentGet(isEdit);
         }
         nationalitiesList();
+        this.selectInitialize(this.props);
     }
+
+    // componentDidUpdate() {
+    //     this.selectInitialize(this.props);
+    // }
+
+    // componentWillUnmount() {
+    //     const {actions} = this.props;
+    //     actions.studentsReset();
+    // }
 
     submit(props) {
         const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
@@ -41,7 +60,7 @@ class StudentCreatePage extends Component {
     render() {
         const { 
             pristine, handleSubmit, submitting, 
-            handleCancel, formValueSelector, isEdit, nationalities
+            handleCancel, formValueSelector, nationalities
         } = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>

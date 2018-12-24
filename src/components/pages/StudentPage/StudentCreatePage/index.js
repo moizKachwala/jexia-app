@@ -6,16 +6,44 @@ import StudentCreatePageComponent from './StudentCreatePage.jsx';
 import studentCreateForm from '../../../../store/forms/studentCreateForm';
 import {create, get} from '../../../../store/actions/students';
 import {list} from '../../../../store/actions/nationalities';
+import { createSelector } from 'reselect';
+import {createStudentSelector} from '../../../../store/selectors/students';
 
-const selectSelectedStudent = (state) => state.students.selectedStudent;
+const selectSelectedStudent = (state) => state.students.selectedStudentId;
 
-// const selectedBook = (paramId, collection) => collection.find(({id}) => id === paramId);
+//const selectStudent = createStudentSelector(selectSelectedStudent);
+
+const selectStudentForm = createSelector(
+    //selectStudent,
+    (state) => state.students.selectedStudent,
+    (student) => {
+        let form = {
+            firstName: '',
+            lastName: '',
+            dateOfBirth: '',
+            nationality: '',
+            familyMembers: [
+                {firstName: '', lastName: '', dateOfBirth:'', nationality:''},
+            ],
+        };
+
+        if(student) {
+            form = {
+                ...student
+            };
+        }
+        
+        return form;
+    }
+);
 
 export const StudentCreatePage = connect(
     (state, props) => ({
         formValueSelector: (field) => formValueSelector('student-create')(state, field),
         isEdit: selectSelectedStudent(state),
+        studentId: selectSelectedStudent(state, props),
         nationalities: state.nationalities.data,
+        initialValues: selectStudentForm(state, props),
         // selectedBook: selectedBook(parseInt(props.params.id), state.books.data),
     }),
     (dispatch) => ({

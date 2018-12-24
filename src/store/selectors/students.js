@@ -6,3 +6,9 @@ export const selectStudents = createSelector(
     selectStudentList,
     (students) => students,
 );
+
+export const createStudentSelector = (selectStudentId) => createSelector(
+    selectStudents,
+    selectStudentId,
+    (students, studentId) => students.find((student) => student.ID === studentId)
+);

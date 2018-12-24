@@ -7,8 +7,10 @@ import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 import SelectField from '../../../common/SelectField/SelectField.jsx';
 
 const FAMILY_TEMPLATE = {
-    name: '',
+    firstName: '',
+    lastName: '',
     relationship: '',
+    dateOfBirth: '',
     nationality: '',
 };
 
@@ -18,6 +20,11 @@ class FamilyFieldArray extends Component {
 
     constructor() {
         super();
+    }
+
+    renderMoiz(member, index) {
+        console.log(member);
+        console.log(index);
     }
 
     renderFamilyMember(member, index) {
@@ -111,6 +118,7 @@ class FamilyFieldArray extends Component {
                 </div>
                 <div>
                     {fields.map((member, index) => this.renderFamilyMember(member, index))}
+                    {/* {fields.map((member, index) => this.renderMoiz(member, index))} */}
                 </div>
             </div>
         );

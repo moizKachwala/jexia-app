@@ -1,14 +1,14 @@
 import {reduxForm} from 'redux-form';
 
-const validate = ({bookName, pages}) => {
+const validate = ({firstName, lastName}) => {
     const errors = {};
 
-    if(!bookName) {
-        errors.bookName = "Please enter bookName";
+    if(!firstName) {
+        errors.firstName = "Please enter fistName";
     }
 
-    if(!pages) {
-        errors.pages = "Please enter pages";
+    if(!lastName) {
+        errors.lastName = "Please enter lastName";
     }
 
     return errors;
