@@ -64,7 +64,7 @@ class StudentEditPage extends Component {
     render() {
         const { 
             pristine, handleSubmit, submitting, 
-            handleCancel, formValueSelector, nationalities
+            handleCancel, formValueSelector, nationalities, allowEdit
         } = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
@@ -76,6 +76,7 @@ class StudentEditPage extends Component {
                             component={TextInput}
                             name="firstName"
                             placeholder="First Name"
+                            readOnly={!allowEdit}
                         />
                     </div>
                     <div className="col-md-6">
@@ -85,6 +86,7 @@ class StudentEditPage extends Component {
                             component={TextInput}
                             name="lastName"
                             placeholder="Last Name"
+                            readOnly={!allowEdit}
                         />
                     </div>
 
@@ -94,6 +96,7 @@ class StudentEditPage extends Component {
                             component={CustomDatePicker}
                             name="dateOfBirth"
                             placeholder="Date of birth"
+                            disabled={!allowEdit}
                         />
                     </div>
 
@@ -107,6 +110,7 @@ class StudentEditPage extends Component {
                             }))}
                             name="nationality"
                             placeholder="Nationality"
+                            readOnly={!allowEdit}
                         />
                     </div>
                 </div>

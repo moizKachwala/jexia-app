@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import { StudentEditPage } from './StudentEditPage';
 import { Modal, Button, OverlayTrigger, Table, PageHeader } from 'react-bootstrap';
 
+const systemRoles = [
+  { value: 'Admin', label: 'Admin Staff' },
+  { value: 'Registrars', label: 'Registrars' },
+];
+
 class StudentPage extends Component {
 
   constructor() {
     super();
+
+    this.state = {
+      show: false,
+      role: systemRoles[0].value,
+    };
+
     this.renderRows = this.renderRows.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
-    this.state = {
-      show: false
-    };
+    this.handleRoleChange = this.handleRoleChange.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +42,10 @@ class StudentPage extends Component {
     this.handleShow();
   }
 
+  handleRoleChange(event) {
+    this.setState({ role: event.target.value });
+  }
+
   renderRows() {
     const { students } = this.props;
     return students && students.map((student) => (
@@ -48,8 +60,22 @@ class StudentPage extends Component {
   }
 
   render() {
+    const {role} = this.state;
+    const allowEdit = Boolean(role === "Registrars");
     return (
       <div>
+        <div className="row">
+          <div className="col-md-6">
+            <label>Select Role</label>
+            <select value={this.state.selectedRole} className="form-control" onChange={this.handleRoleChange}>
+              {systemRoles.map((opt, i) => (
+                <option key={`${opt}-${i}`} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <PageHeader>
           List Students
         </PageHeader>
@@ -68,7 +94,7 @@ class StudentPage extends Component {
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentEditPage handleCancel={this.handleClose} />
+            <StudentEditPage allowEdit={allowEdit} handleCancel={this.handleClose} />
           </Modal.Body>
           {/* <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
