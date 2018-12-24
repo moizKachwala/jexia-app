@@ -27,6 +27,14 @@ const createStudent = (student) => {
     }).then(apiHandleResponse);
 };
 
+const updateStudent = (studentId, student) => {
+    return fetch(`http://localhost:8088/api/Students/${studentId}`, {
+        method: METHOD_PUT,
+        headers:HEADERS_JSON_SEND_RECEIVE,
+        body: JSON.stringify(student)
+    }).then(apiHandleResponse);
+};
+
 const getStudentNationality = (studentId) => {
     return fetch(`http://localhost:8088/api/Students/${studentId}/Nationality`, {
         method: METHOD_GET,
@@ -63,6 +71,14 @@ const createFamilyMember = (studentId, familyMember) => {
     }).then(apiHandleResponse);
 };
 
+const updateFamilyMember = (familyMemberId, familyMember) => {
+    return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}`, {
+        method: METHOD_PUT,
+        headers:HEADERS_JSON_SEND_RECEIVE,
+        body: JSON.stringify(familyMember)
+    }).then(apiHandleResponse);
+};
+
 const setFamilyMemberNationality = (familyMemberId, nationalityId) => {
     return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}/Nationality/${nationalityId}`, {
         method: METHOD_PUT,
@@ -74,9 +90,11 @@ export {
     getStudents,
     getStudentById,
     createStudent,
+    updateStudent,
     getStudentNationality,
     setStudentNationality,
     createFamilyMember,
+    updateFamilyMember,
     getFamilyMembersByStudentId,
     getFamilyMemberById,
     setFamilyMemberNationality,

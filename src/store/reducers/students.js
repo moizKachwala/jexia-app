@@ -82,7 +82,33 @@ export default createReducer(initialState, {
             errorMessage,
         },
     }),
+
+    [actions.STUDENTS_UPDATE_PENDING]: (state) => ({ 
+        ...state, 
+        update: {
+            pending: true,
+        },
+    }),
+    [actions.STUDENTS_UPDATE_FULFILLED]: (state) => ({
+        ...state,
+        update: {
+            ...initialStatusState,
+        }
+    }),
+    [actions.STUDENTS_UPDATE_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        update: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+
     [actions.STUDENTS_SELECTED]: (state, payload) => ({
         ...state, selectedStudentId: payload.ID
+    }),
+
+    [actions.STUDENTS_RESET]: (state) => ({
+        ...state, selectedStudentId: null, selectedStudent: {}
     }),
 });

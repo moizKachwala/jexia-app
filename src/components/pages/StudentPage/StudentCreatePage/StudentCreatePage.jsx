@@ -41,9 +41,9 @@ class StudentCreatePage extends Component {
         this.selectInitialize(this.props);
     }
 
-    // componentDidUpdate() {
-    //     this.selectInitialize(this.props);
-    // }
+    componentDidUpdate() {
+        this.selectInitialize(this.props);
+    }
 
     // componentWillUnmount() {
     //     const {actions} = this.props;
@@ -51,10 +51,15 @@ class StudentCreatePage extends Component {
     // }
 
     submit(props) {
-        const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
-        const { actions: { studentCreate } } = this.props;
+        const { ID, firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
+        const { actions: { studentCreate, studentUpdate },  isEdit} = this.props;
 
-        studentCreate({ firstName, lastName, dateOfBirth, nationality, familyMembers });
+        if(isEdit) {
+            studentUpdate(ID, { ID, firstName, lastName, dateOfBirth, nationality, familyMembers });
+        }
+        else {
+            studentCreate({ firstName, lastName, dateOfBirth, nationality, familyMembers });
+        }
     }
 
     render() {

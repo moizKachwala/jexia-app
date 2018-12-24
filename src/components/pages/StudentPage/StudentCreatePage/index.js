@@ -4,7 +4,7 @@ import {formValueSelector} from 'redux-form';
 
 import StudentCreatePageComponent from './StudentCreatePage.jsx';
 import studentCreateForm from '../../../../store/forms/studentCreateForm';
-import {create, get} from '../../../../store/actions/students';
+import {create, get, update} from '../../../../store/actions/students';
 import {list} from '../../../../store/actions/nationalities';
 import { createSelector } from 'reselect';
 import {createStudentSelector} from '../../../../store/selectors/students';
@@ -12,6 +12,7 @@ import {createStudentSelector} from '../../../../store/selectors/students';
 const selectSelectedStudent = (state) => state.students.selectedStudentId;
 
 //const selectStudent = createStudentSelector(selectSelectedStudent);
+
 
 const selectStudentForm = createSelector(
     //selectStudent,
@@ -27,7 +28,7 @@ const selectStudentForm = createSelector(
             ],
         };
 
-        if(student) {
+        if(student.ID) {
             form = {
                 ...student
             };
@@ -51,6 +52,7 @@ export const StudentCreatePage = connect(
             nationalitiesList: list,
             studentCreate: create,
             studentGet: get,
+            studentUpdate: update,
         }, dispatch)
     })
 )(studentCreateForm(StudentCreatePageComponent));

@@ -21,7 +21,9 @@ class StudentPage extends Component {
   }
 
   handleClose() {
+    // const {actions: {studentReset}} = this.props;
     this.setState({ show: false });
+    // studentReset();
   }
 
   handleShow() {

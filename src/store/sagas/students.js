@@ -71,6 +71,32 @@ function *create(action) {
     }
 }
 
+function *update(action) {
+    try {
+        yield put({type: actions.STUDENTS_CREATE_PENDING});
+        const {student} = action.payload;
+        const {familyMembers, nationality} = student; //TODO
+
+        //update student
+        yield call(API.updateStudent, student.ID, student);
+
+        //setting nationality
+        yield call(API.setStudentNationality, student.ID, nationality);
+
+        //creating family members with nationality
+        const calls = [];
+        familyMembers.forEach(familyMember => {
+            calls.push(call(updateFamilyMember, familyMember));
+        });
+        yield all(calls);
+        
+        yield put({type: actions.STUDENTS_UPDATE_FULFILLED, student});
+    }
+    catch (error) {
+        yield put({type: actions.STUDENTS_CREATE_REJECTED});
+    }
+}
+
 function *createFamilyMember(studentId, familyMember) {
     try {
         const {nationality} = familyMember;
@@ -82,8 +108,20 @@ function *createFamilyMember(studentId, familyMember) {
     }
 }
 
+function *updateFamilyMember(familyMember) {
+    try {
+        const {nationality} = familyMember;
+        yield call(API.updateFamilyMember, familyMember.ID, familyMember);
+        yield call(API.setFamilyMemberNationality, familyMember.ID, nationality);
+    }
+    catch (error) {
+        yield put({type: actions.STUDENTS_UPDATE_REJECTED});
+    }
+}
+
 export default function *() {
     yield takeEvery(actions.STUDENTS_LIST, list);
     yield takeEvery(actions.STUDENTS_GET, get);
     yield takeEvery(actions.STUDENTS_CREATE, create);
+    yield takeEvery(actions.STUDENTS_UPDATE, update);
 }
