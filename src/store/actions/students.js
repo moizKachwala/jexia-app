@@ -26,14 +26,14 @@ export const list = () => ({
     type: STUDENTS_LIST,
 });
 
-export const create = (student) => ({
+export const create = (student, callback) => ({
     type: STUDENTS_CREATE,
-    payload: {student},
+    payload: {student, callback},
 });
 
-export const update = (id, student) => ({
+export const update = (id, student, callback) => ({
     type: STUDENTS_UPDATE,
-    payload: {id, student},
+    payload: {id, student, callback},
 });
 
 export const select = (student) => ({

@@ -48,7 +48,7 @@ function *get(action) {
 function *create(action) {
     try {
         yield put({type: actions.STUDENTS_CREATE_PENDING});
-        const {student} = action.payload;
+        const {student, callback} = action.payload;
         const {familyMembers, nationality} = student; //TODO
 
         //creating new student
@@ -65,6 +65,10 @@ function *create(action) {
         yield all(calls);
         
         yield put({type: actions.STUDENTS_CREATE_FULFILLED, newStudent});
+
+        if (callback) {
+            callback();
+        }
     }
     catch (error) {
         yield put({type: actions.STUDENTS_CREATE_REJECTED});
@@ -74,7 +78,7 @@ function *create(action) {
 function *update(action) {
     try {
         yield put({type: actions.STUDENTS_CREATE_PENDING});
-        const {student} = action.payload;
+        const {student, callback} = action.payload;
         const {familyMembers, nationality} = student; //TODO
 
         //update student
@@ -89,8 +93,11 @@ function *update(action) {
             calls.push(call(updateFamilyMember, familyMember));
         });
         yield all(calls);
-        
         yield put({type: actions.STUDENTS_UPDATE_FULFILLED, student});
+
+        if (callback) {
+            callback();
+        }
     }
     catch (error) {
         yield put({type: actions.STUDENTS_CREATE_REJECTED});

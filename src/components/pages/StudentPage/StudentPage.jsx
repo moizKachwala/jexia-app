@@ -21,6 +21,7 @@ class StudentPage extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRoleChange = this.handleRoleChange.bind(this);
+    this.handleCallback = this.handleCallback.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +35,13 @@ class StudentPage extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleCallback() {
+    this.handleClose();
+
+    const { actions: { studentList } } = this.props;
+    studentList();
   }
 
   selectStudent(student) {
@@ -89,16 +97,23 @@ class StudentPage extends Component {
           Add Student
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal 
+        bsSize="large"
+        aria-labelledby="contained-modal-title-lg"
+        show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentEditPage hasEditRights={hasEditRights} handleCancel={this.handleClose} />
+            <StudentEditPage 
+              hasEditRights={hasEditRights} 
+              handleCancel={this.handleClose} 
+              handleCallback={this.handleCallback}
+            />
           </Modal.Body>
-          {/* <Modal.Footer>
+          <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer> */}
+          </Modal.Footer>
         </Modal>
       </div>
     );

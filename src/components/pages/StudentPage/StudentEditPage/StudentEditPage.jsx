@@ -49,22 +49,29 @@ class StudentEditPage extends Component {
         actions.studentsReset();
     }
 
-    submit(props) {
-        const { ID, firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
-        const { actions: { studentCreate, studentUpdate },  isEdit} = this.props;
+    submit(form) {
+        const {ID} = form;
+        const { 
+            isEdit, invalid, pristine, handleCallback,
+            actions: { studentCreate, studentUpdate },
+         } = this.props;
+
+        if(pristine || invalid) {
+            return;
+        }
 
         if(isEdit) {
-            studentUpdate(ID, { ID, firstName, lastName, dateOfBirth, nationality, familyMembers });
+            studentUpdate(ID, form, handleCallback);
         }
         else {
-            studentCreate({ firstName, lastName, dateOfBirth, nationality, familyMembers });
+            studentCreate(form, handleCallback);
         }
     }
 
     render() {
         const { 
             pristine, handleSubmit, submitting, 
-            handleCancel, formValueSelector, nationalities, hasEditRights, isEdit
+            handleCancel, formValueSelector, nationalities, hasEditRights, isEdit, invalid
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);

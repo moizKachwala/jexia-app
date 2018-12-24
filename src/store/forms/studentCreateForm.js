@@ -1,6 +1,6 @@
 import {reduxForm} from 'redux-form';
 
-const validate = ({firstName, lastName}) => {
+const validate = ({firstName, lastName, dateOfBirth, nationality}) => {
     const errors = {};
 
     if(!firstName) {
@@ -9,6 +9,14 @@ const validate = ({firstName, lastName}) => {
 
     if(!lastName) {
         errors.lastName = "Please enter lastName";
+    }
+
+    if(!dateOfBirth) {
+        errors.dateOfBirth = "Please enter date of birth";
+    }
+
+    if(!nationality) {
+        errors.nationality = "Please select nationality";
     }
 
     return errors;
