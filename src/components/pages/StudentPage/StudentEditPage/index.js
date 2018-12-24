@@ -11,6 +11,12 @@ import {createStudentSelector} from '../../../../store/selectors/students';
 
 const selectSelectedStudent = (state) => state.students.selectedStudentId;
 
+//TODO change the way null check is done.
+const selectIsEdit = createSelector(
+    selectSelectedStudent,
+    (studentId) => (studentId !== null)
+);
+
 //const selectStudent = createStudentSelector(selectSelectedStudent);
 
 const selectStudentForm = createSelector(
@@ -27,6 +33,7 @@ const selectStudentForm = createSelector(
             ],
         };
 
+        //TODO change the id how we check for edit.
         if(student.ID) {
             form = {
                 ...student
@@ -40,7 +47,7 @@ const selectStudentForm = createSelector(
 export const StudentEditPage = connect(
     (state, props) => ({
         formValueSelector: (field) => formValueSelector('student-create')(state, field),
-        isEdit: selectSelectedStudent(state),
+        isEdit: selectIsEdit(state),
         studentId: selectSelectedStudent(state, props),
         nationalities: state.nationalities.data,
         initialValues: selectStudentForm(state, props),

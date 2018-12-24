@@ -32,9 +32,9 @@ class StudentEditPage extends Component {
     }
 
     componentDidMount() {
-        const {actions: {studentGet, nationalitiesList}, isEdit} = this.props;
+        const {actions: {studentGet, nationalitiesList}, isEdit, studentId} = this.props;
         if(isEdit) {
-            studentGet(isEdit);
+            studentGet(studentId);
         }
         nationalitiesList();
         this.selectInitialize(this.props);
@@ -64,8 +64,10 @@ class StudentEditPage extends Component {
     render() {
         const { 
             pristine, handleSubmit, submitting, 
-            handleCancel, formValueSelector, nationalities, allowEdit
+            handleCancel, formValueSelector, nationalities, hasEditRights, isEdit
         } = this.props;
+
+        const allowEdit = ((isEdit && hasEditRights) || !isEdit);
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="row">                
@@ -120,6 +122,7 @@ class StudentEditPage extends Component {
                         component={FamilyFieldArray}
                         formValueSelector={formValueSelector}
                         nationalities={nationalities}
+                        allowEdit={allowEdit}
                     />
                 </div>
                 <div className="row">

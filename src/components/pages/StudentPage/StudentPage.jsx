@@ -61,7 +61,7 @@ class StudentPage extends Component {
 
   render() {
     const {role} = this.state;
-    const allowEdit = Boolean(role === "Registrars");
+    const hasEditRights = Boolean(role === "Registrars");
     return (
       <div>
         <div className="row">
@@ -90,11 +90,11 @@ class StudentPage extends Component {
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentEditPage allowEdit={allowEdit} handleCancel={this.handleClose} />
+            <StudentEditPage hasEditRights={hasEditRights} handleCancel={this.handleClose} />
           </Modal.Body>
           {/* <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>

@@ -23,7 +23,7 @@ class FamilyFieldArray extends Component {
     }
 
     renderFamilyMember(member, index) {
-        const { formValueSelector, fields, nationalities } = this.props;
+        const { formValueSelector, fields, nationalities, allowEdit } = this.props;
         const id = formValueSelector(`${member}.id`);
         const isNew = id === undefined;
         let handleDeleteClick;
@@ -50,6 +50,7 @@ class FamilyFieldArray extends Component {
                         name={`${member}.firstName`}
                         component={TextInput}
                         placeholder="First Name"
+                        disabled={!allowEdit}
                     />
                 </div>
                 <div className="col-md-4">
@@ -59,6 +60,7 @@ class FamilyFieldArray extends Component {
                         name={`${member}.lastName`}
                         component={TextInput}
                         placeholder="Last Name"
+                        disabled={!allowEdit}
                     />
                 </div>
                 <div className="col-md-4">
@@ -67,6 +69,7 @@ class FamilyFieldArray extends Component {
                         component={CustomDatePicker}
                         name={`${member}.dateOfBirth`}
                         placeholder="Date of birth"
+                        disabled={!allowEdit}
                     />
                 </div>
                 <div className="col-md-4">
@@ -79,6 +82,7 @@ class FamilyFieldArray extends Component {
                         }))}
                         name={`${member}.relationship`}
                         placeholder="Relationship"
+                        disabled={!allowEdit}
                     />
                 </div>
                 <div className="col-md-4">
@@ -91,24 +95,27 @@ class FamilyFieldArray extends Component {
                         }))}
                         name={`${member}.nationality`}
                         placeholder="Nationality"
+                        disabled={!allowEdit}
                     />
                 </div>
-                <div className="col-md-4">
-                    <span className="btn btn-danger"
-                        onClick={handleDeleteClick}
-                    >Delete</span>
-                </div>
+                {allowEdit && (
+                    <div className="col-md-4">
+                        <span className="btn btn-danger"
+                            onClick={handleDeleteClick}
+                        >Delete</span>
+                    </div>
+                )}
             </div>
         );
     }
 
     render() {
-        const { fields, formValueSelector } = this.props;
+        const { fields, formValueSelector, allowEdit } = this.props;
         return (
             <div className="col-md-12">
                 <div className="row">
                     <div className="col-md-6 pull-right">
-                        <Button theme="primary" onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
+                        <Button theme="primary" disabled={!allowEdit} onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
                     </div>
                 </div>
                 <div>
