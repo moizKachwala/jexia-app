@@ -3,6 +3,8 @@ import { Field } from 'redux-form';
 
 import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
+import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
+import SelectField from '../../../common/SelectField/SelectField.jsx';
 
 const FAMILY_TEMPLATE = {
     name: '',
@@ -17,7 +19,7 @@ class FamilyFieldArray extends Component {
     }
 
     renderFamilyMember(member, index) {
-        const {formValueSelector, fields} = this.props;
+        const { formValueSelector, fields, nationalities } = this.props;
         const id = formValueSelector(`${member}.id`);
         const isNew = id === undefined;
         let handleDeleteClick;
@@ -37,36 +39,48 @@ class FamilyFieldArray extends Component {
         };
         return (
             <div className="row" key={`${(id === undefined) ? index : id}`}>
-                <div className="col-md-3">
+                <div className="col-md-4">
                     <Field
                         type="text"
-                        label="Name"
-                        name={`${member}.name`}
+                        label="First Name"
+                        name={`${member}.firstName`}
                         component={TextInput}
-                        placeholder="Name"
+                        placeholder="First Name"
                     />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-4">
                     <Field
                         type="text"
-                        label="Relationship"
-                        name={`${member}.relationship`}
+                        label="Last Name"
+                        name={`${member}.lastName`}
                         component={TextInput}
-                        placeholder="Name"
+                        placeholder="Last Name"
                     />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-4">
                     <Field
-                        type="text"
+                        label="Date of birth"
+                        component={CustomDatePicker}
+                        name={`${member}.dateOfBirth`}
+                        placeholder="Date of birth"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <Field
                         label="Nationality"
+                        component={SelectField}
+                        options={nationalities.map((nationality) => ({
+                            label: nationality.Title,
+                            value: nationality.ID,
+                        }))}
                         name={`${member}.nationality`}
-                        component={TextInput}
+                        placeholder="Nationality"
                     />
                 </div>
-                <div className="col-md-3">
-                <span className="family-item-remover"
-                    onClick={handleDeleteClick}
-                >Delete</span>
+                <div className="col-md-4">
+                    <span className="btn btn-danger"
+                        onClick={handleDeleteClick}
+                    >Delete</span>
                 </div>
             </div>
         );
@@ -75,9 +89,15 @@ class FamilyFieldArray extends Component {
     render() {
         const { fields, formValueSelector } = this.props;
         return (
-            <div>
-                <Button onClick={() => fields.push({...FAMILY_TEMPLATE})}>Add Family Member</Button>
-                {fields.map((member, index) => this.renderFamilyMember(member, index))}
+            <div className="col-md-12">
+                <div className="row">
+                    <div className="col-md-6 pull-right">
+                        <Button theme="primary" onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
+                    </div>
+                </div>
+                <div>
+                    {fields.map((member, index) => this.renderFamilyMember(member, index))}
+                </div>
             </div>
         );
     }

@@ -23,6 +23,14 @@ class StudentCreatePage extends Component {
         this.submit = this.submit.bind(this);
     }
 
+    componentDidMount() {
+        const {actions: {studentGet, nationalitiesList}, isEdit} = this.props;
+        if(isEdit) {
+            studentGet(isEdit.ID);
+        }
+        nationalitiesList();
+    }
+
     submit(props) {
         const { firstName, lastName, dateOfBirth, nationality, familyMembers } = props;
         const { actions: { studentCreate } } = this.props;
@@ -31,12 +39,14 @@ class StudentCreatePage extends Component {
     }
 
     render() {
-        const { pristine, handleSubmit, submitting, handleCancel, formValueSelector } = this.props;
-      
+        const { 
+            pristine, handleSubmit, submitting, 
+            handleCancel, formValueSelector, isEdit, nationalities
+        } = this.props;
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
-                <div className="row">
-                    <div className="col-md-12">
+                <div className="row">                
+                    <div className="col-md-6">
                         <Field
                             type="text"
                             label="First Name"
@@ -44,6 +54,8 @@ class StudentCreatePage extends Component {
                             name="firstName"
                             placeholder="First Name"
                         />
+                    </div>
+                    <div className="col-md-6">
                         <Field
                             type="text"
                             label="Last Name"
@@ -51,29 +63,39 @@ class StudentCreatePage extends Component {
                             name="lastName"
                             placeholder="Last Name"
                         />
+                    </div>
+
+                    <div className="col-md-6">
                         <Field
                             label="Date of birth"
                             component={CustomDatePicker}
                             name="dateOfBirth"
                             placeholder="Date of birth"
                         />
+                    </div>
+
+                    <div className="col-md-6">
                         <Field
                             label="Nationality"
                             component={SelectField}
-                            options={[
-                                {value: 'option-1', label: 'Option 1'},
-                                {value: 'option-2', label: 'Option 2'},
-                                {value: 'option-3', label: 'Option 3'},
-                            ]}
+                            options={nationalities.map((nationality) => ({
+                                label: nationality.Title,
+                                value: nationality.ID,
+                            }))}
                             name="nationality"
                             placeholder="Nationality"
                         />
-                        <FieldArray
-                            name="familyMembers"
-                            component={FamilyFieldArray}
-                            formValueSelector={formValueSelector}
-                        />
                     </div>
+                </div>
+                <div className="row">
+                    <FieldArray
+                        name="familyMembers"
+                        component={FamilyFieldArray}
+                        formValueSelector={formValueSelector}
+                        nationalities={nationalities}
+                    />
+                </div>
+                <div className="row">
                     <div className="col-md-12">
                         <Button
                             type="submit"

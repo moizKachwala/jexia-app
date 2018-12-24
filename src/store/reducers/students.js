@@ -13,6 +13,9 @@ const initialState = {
     list: {
         ...initialStatusState,
     },
+    get: {
+        ...initialStatusState,
+    },
     create: {
         ...initialStatusState,
     },
@@ -42,6 +45,20 @@ export default createReducer(initialState, {
             error: true,
             errorMessage,
         },
+    }),
+
+    [actions.STUDENTS_GET_PENDING]: (state) => ({ 
+        ...state, 
+        get: {
+            pending: true,
+        },
+    }),
+    [actions.STUDENTS_GET_FULFILLED]: (state, student) => ({
+        ...state,
+        selectedStudent: student,
+    }),
+    [actions.STUDENTS_GET_REJECTED]: (state, errorMessage) => ({
+        ...state
     }),
 
     [actions.STUDENTS_CREATE_PENDING]: (state) => ({ 

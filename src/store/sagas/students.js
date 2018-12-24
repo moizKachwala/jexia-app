@@ -15,6 +15,28 @@ function *list() {
     }
 }
 
+function *get(action) {
+    const {studentId} = action.payload;
+    try {
+        yield put({type: actions.STUDENTS_GET_PENDING});
+        const student = yield call(API.getStudentById, studentId);
+        const {nationality} = yield call(API.getStudentNationality, studentId);
+        const familyMembers = yield call(API.getFamilyMembersByStudentId, studentId);
+
+        const payload = {
+            ...{
+                ...student,
+                nationality,
+            },
+            familyMembers: {...familyMembers},
+        };
+        yield put({type: actions.STUDENTS_GET_FULFILLED, payload});
+    }
+    catch (error) {
+        yield put({type: actions.STUDENTS_GET_REJECTED});
+    }
+}
+
 function *create(action) {
     try {
         yield put({type: actions.STUDENTS_CREATE_PENDING});
@@ -42,5 +64,6 @@ function *create(action) {
 
 export default function *() {
     yield takeEvery(actions.STUDENTS_LIST, list);
+    yield takeEvery(actions.STUDENTS_GET, get);
     yield takeEvery(actions.STUDENTS_CREATE, create);
 }
