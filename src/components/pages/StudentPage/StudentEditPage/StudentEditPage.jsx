@@ -76,7 +76,7 @@ class StudentEditPage extends Component {
                             component={TextInput}
                             name="firstName"
                             placeholder="First Name"
-                            readOnly={!allowEdit}
+                            disabled={!allowEdit}
                         />
                     </div>
                     <div className="col-md-6">
@@ -86,7 +86,7 @@ class StudentEditPage extends Component {
                             component={TextInput}
                             name="lastName"
                             placeholder="Last Name"
-                            readOnly={!allowEdit}
+                            disabled={!allowEdit}
                         />
                     </div>
 
@@ -110,7 +110,7 @@ class StudentEditPage extends Component {
                             }))}
                             name="nationality"
                             placeholder="Nationality"
-                            readOnly={!allowEdit}
+                            disabled={!allowEdit}
                         />
                     </div>
                 </div>

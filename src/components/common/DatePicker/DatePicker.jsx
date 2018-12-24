@@ -33,7 +33,7 @@ class CustomDatePicker extends Component {
 
     render() {
         const {
-            input, placeholder, label,
+            input, placeholder, label, disabled,
             meta: { touched, error }
         } = this.props;
 
@@ -48,6 +48,7 @@ class CustomDatePicker extends Component {
                     selected={input.value ? moment(input.value, 'MM-DD-YYYY') : null}
                     onChange={this.handleChange}
                     autoComplete="off"
+                    disabled={disabled}
                 />
                 {touched && error && <span>{error}</span>}
             </div>

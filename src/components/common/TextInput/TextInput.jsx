@@ -18,7 +18,7 @@ class TextInput extends Component {
     }
 
     render() {
-        const {label, type, readOnly, placeholder, input = {}} = this.props;
+        const {label, type, disabled, placeholder, input = {}} = this.props;
         return (
             <div className="form-group">
                 <label>{label}</label>
@@ -26,7 +26,7 @@ class TextInput extends Component {
                     {...input}
                     className="form-control"
                     placeholder={placeholder}
-                    readOnly={readOnly}
+                    readOnly={disabled}
                     type={type}
                 />
             </div>

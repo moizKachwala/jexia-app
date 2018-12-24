@@ -5,17 +5,17 @@ import classnames from 'classnames';
 class SelectField extends Component {
 
     static propTypes = {
-        
+
         label: PropTypes.string.isRequired,
-        
+
         value: PropTypes.string,
-        
+
         disabled: PropTypes.bool,
-        
+
         valid: PropTypes.bool,
 
         error: PropTypes.string,
-        
+
         /**
          * Select drop down options
          */
@@ -39,11 +39,15 @@ class SelectField extends Component {
     };
 
     render() {
-        const {options, label} = this.props;
+        const { options, label, disabled } = this.props;
         return (
             <div className="form-group">
                 <label>{label}</label>
-                <select {...this.props.input} className="form-control">
+                <select
+                    {...this.props.input}
+                    className="form-control"
+                    disabled={disabled}
+                >
                     <option value="">Select</option>
                     {options.map((opt, i) => (
                         <option key={`${opt}-${i}`} value={opt.value}>
