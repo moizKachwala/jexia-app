@@ -63,6 +63,13 @@ const createFamilyMember = (studentId, familyMember) => {
     }).then(apiHandleResponse);
 };
 
+const setFamilyMemberNationality = (familyMemberId, nationalityId) => {
+    return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}/Nationality/${nationalityId}`, {
+        method: METHOD_PUT,
+        headers:HEADERS_JSON_SEND_RECEIVE,
+    }).then(apiHandleResponse);
+};
+
 export {
     getStudents,
     getStudentById,
@@ -72,4 +79,5 @@ export {
     createFamilyMember,
     getFamilyMembersByStudentId,
     getFamilyMemberById,
+    setFamilyMemberNationality,
 };

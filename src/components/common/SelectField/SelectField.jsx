@@ -23,7 +23,7 @@ class SelectField extends Component {
             /**
              * option value
              */
-            value: PropTypes.string,
+            value: PropTypes.int,
             /**
              * Visible option label
              */

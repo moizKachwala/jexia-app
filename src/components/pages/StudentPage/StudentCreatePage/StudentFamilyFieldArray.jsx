@@ -12,6 +12,8 @@ const FAMILY_TEMPLATE = {
     nationality: '',
 };
 
+const relationshipOptions = ['Parent', 'Sibling', 'Spouse'];
+
 class FamilyFieldArray extends Component {
 
     constructor() {
@@ -63,6 +65,18 @@ class FamilyFieldArray extends Component {
                         component={CustomDatePicker}
                         name={`${member}.dateOfBirth`}
                         placeholder="Date of birth"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <Field
+                        label="Relationship"
+                        component={SelectField}
+                        options={relationshipOptions.map((relationship) => ({
+                            label: relationship,
+                            value: relationship,
+                        }))}
+                        name={`${member}.relationship`}
+                        placeholder="Relationship"
                     />
                 </div>
                 <div className="col-md-4">
