@@ -46,7 +46,7 @@ class CustomDatePicker extends Component {
                 <DatePicker
                     className="form-control"
                     {...input}
-                    placeholder={placeholder}
+                    placeholderText={placeholder}
                     dateFormat="MM-DD-YYYY"
                     selected={input.value ? moment(input.value) : null}
                     onChange={this.handleChange}

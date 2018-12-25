@@ -5,3 +5,6 @@
 5. change url in api
 6. date issue for default row.
 7. atleast one family member.
+8. change title to edit student.
+9. add prop types to forms
+10 format student page with modal.
