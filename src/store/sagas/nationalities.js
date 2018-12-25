@@ -16,5 +16,5 @@ function *list() {
 }
 
 export default function *() {
-    yield takeEvery(actions.NATIONALITIES_LIST, list)    
+    yield takeEvery(actions.NATIONALITIES_LIST, list);
 }
