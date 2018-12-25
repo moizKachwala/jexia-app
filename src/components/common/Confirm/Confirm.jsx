@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import {Modal} from 'react-bootstrap';
-import {Button} from '../Button';
+import Button from '../Button/Button.jsx';
 
 class Confirm extends Component {
 

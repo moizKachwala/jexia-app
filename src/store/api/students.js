@@ -1,26 +1,26 @@
 import {
     METHOD_GET, HEADERS_JSON_SEND, METHOD_POST, 
     METHOD_PUT, HEADERS_JSON_SEND_RECEIVE, 
-    HEADERS_JSON_RECEIVE
+    HEADERS_JSON_RECEIVE, SERVER_URL
 } from '../constants/api';
 import {apiHandleResponse} from '../../util/api';
 
 const getStudents = () => {
-    return fetch('http://localhost:8088/api/Students', {
+    return fetch(`${SERVER_URL}/api/Students`, {
         method: METHOD_GET,
         headers: HEADERS_JSON_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const getStudentById = (studentId) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}`, {
         method: METHOD_GET,
         headers: HEADERS_JSON_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const createStudent = (student) => {
-    return fetch('http://localhost:8088/api/Students', {
+    return fetch(`${SERVER_URL}/api/Students`, {
         method: METHOD_POST,
         headers:HEADERS_JSON_SEND_RECEIVE,
         body: JSON.stringify(student)
@@ -28,7 +28,7 @@ const createStudent = (student) => {
 };
 
 const updateStudent = (studentId, student) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}`, {
         method: METHOD_PUT,
         headers:HEADERS_JSON_SEND_RECEIVE,
         body: JSON.stringify(student)
@@ -36,35 +36,35 @@ const updateStudent = (studentId, student) => {
 };
 
 const getStudentNationality = (studentId) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}/Nationality`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}/Nationality`, {
         method: METHOD_GET,
         headers:HEADERS_JSON_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const setStudentNationality = (studentId, nationalityId) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}/Nationality/${nationalityId}`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}/Nationality/${nationalityId}`, {
         method: METHOD_PUT,
         headers:HEADERS_JSON_SEND_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const getFamilyMembersByStudentId = (studentId) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}/FamilyMembers`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}/FamilyMembers`, {
         method: METHOD_GET,
         headers: HEADERS_JSON_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const getFamilyMemberById = (familyMemberId) => {
-    return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}`, {
+    return fetch(`${SERVER_URL}/api/FamilyMembers/${familyMemberId}`, {
         method: METHOD_GET,
         headers: HEADERS_JSON_RECEIVE,
     }).then(apiHandleResponse);
 };
 
 const createFamilyMember = (studentId, familyMember) => {
-    return fetch(`http://localhost:8088/api/Students/${studentId}/familyMembers`, {
+    return fetch(`${SERVER_URL}/api/Students/${studentId}/familyMembers`, {
         method: METHOD_POST,
         headers:HEADERS_JSON_SEND_RECEIVE,
         body: JSON.stringify(familyMember)
@@ -72,7 +72,7 @@ const createFamilyMember = (studentId, familyMember) => {
 };
 
 const updateFamilyMember = (familyMemberId, familyMember) => {
-    return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}`, {
+    return fetch(`${SERVER_URL}/api/FamilyMembers/${familyMemberId}`, {
         method: METHOD_PUT,
         headers:HEADERS_JSON_SEND_RECEIVE,
         body: JSON.stringify(familyMember)
@@ -80,7 +80,7 @@ const updateFamilyMember = (familyMemberId, familyMember) => {
 };
 
 const setFamilyMemberNationality = (familyMemberId, nationalityId) => {
-    return fetch(`http://localhost:8088/api/FamilyMembers/${familyMemberId}/Nationality/${nationalityId}`, {
+    return fetch(`${SERVER_URL}/api/FamilyMembers/${familyMemberId}/Nationality/${nationalityId}`, {
         method: METHOD_PUT,
         headers:HEADERS_JSON_SEND_RECEIVE,
     }).then(apiHandleResponse);

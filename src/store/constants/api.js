@@ -17,3 +17,5 @@ export const HEADERS_JSON_SEND_RECEIVE = {
     ...HEADERS_JSON_SEND,
     ...HEADERS_JSON_RECEIVE,
 };
+
+export const SERVER_URL = 'http://localhost:8088';

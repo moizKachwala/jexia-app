@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
 import { createSelector } from 'reselect';
-
-import DatePicker from "react-datepicker";
 import moment from 'moment';
-import { TextInput } from '../../../common/TextInput';
-import { Button } from '../../../common/Button';
+
+import { TextInput, Button, CustomDatePicker, SelectField } from '../../../common';
 import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
-import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
-import SelectField from '../../../common/SelectField/SelectField.jsx';
 
 import './StudentEditPage.scss';
 

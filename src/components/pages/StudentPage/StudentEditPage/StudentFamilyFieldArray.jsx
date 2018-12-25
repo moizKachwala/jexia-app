@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
 
-import { TextInput } from '../../../common/TextInput';
-import { Button } from '../../../common/Button';
-import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
-import SelectField from '../../../common/SelectField/SelectField.jsx';
-import { Confirm } from '../../../common/Confirm';
+import { 
+    TextInput, Button, CustomDatePicker, 
+    SelectField, Confirm 
+} from '../../../common';
 
 const FAMILY_TEMPLATE = {
     firstName: '',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StudentEditPage } from './StudentEditPage';
-import { Modal, Button, OverlayTrigger, Table, PageHeader } from 'react-bootstrap';
+import { Modal, Table, PageHeader } from 'react-bootstrap';
+import {Button} from '../../common';
 import moment from 'moment';
 
 const systemRoles = [
@@ -91,7 +92,7 @@ class StudentPage extends Component {
         <PageHeader>
           List Students
           <div className="pull-right">
-            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+            <Button theme="primary" onClick={this.handleShow}>
               Add Student
             </Button>
           </div>
