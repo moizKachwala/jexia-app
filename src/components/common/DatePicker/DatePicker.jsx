@@ -45,7 +45,6 @@ class CustomDatePicker extends Component {
                     {...input}
                     placeholder={placeholder}
                     dateFormat="MM-DD-YYYY"
-                    selected={input.value ? moment(input.value, 'MM-DD-YYYY') : null}
                     onChange={this.handleChange}
                     autoComplete="off"
                     disabled={disabled}

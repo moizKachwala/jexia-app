@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StudentEditPage } from './StudentEditPage';
 import { Modal, Button, OverlayTrigger, Table, PageHeader } from 'react-bootstrap';
+import moment from 'moment';
 
 const systemRoles = [
   { value: 'Admin', label: 'Admin Staff' },
@@ -54,14 +55,17 @@ class StudentPage extends Component {
     this.setState({ role: event.target.value });
   }
 
+  formatDateField(value) {
+    return moment(value).format('MM-DD-YYYY');
+  }
+
   renderRows() {
     const { students } = this.props;
     return students && students.map((student) => (
       <tr key={student.ID}>
-        <td>{student.ID}</td>
         <td>{student.firstName}</td>
         <td>{student.lastName}</td>
-        <td>{student.dateOfBirth}</td>
+        <td>{this.formatDateField(student.dateOfBirth)}</td>
         <td><Button onClick={() => this.selectStudent(student)}>Edit</Button></td>
       </tr>
     ));
@@ -88,6 +92,14 @@ class StudentPage extends Component {
           List Students
         </PageHeader>
         <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Date of Birth</th>
+              <th>Action</th>
+            </tr>
+          </thead>
           <tbody>
             {this.renderRows()}
           </tbody>

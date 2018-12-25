@@ -39,7 +39,6 @@ const selectStudentForm = createSelector(
                 ...student
             };
         }
-        console.log(form);
         return form;
     }
 );

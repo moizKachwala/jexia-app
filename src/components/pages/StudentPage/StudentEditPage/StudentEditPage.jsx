@@ -77,6 +77,7 @@ class StudentEditPage extends Component {
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
+        
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="studenteditpage">
