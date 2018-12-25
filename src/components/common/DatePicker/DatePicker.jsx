@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import classnames from 'classnames';
 
 import './DatePicker.scss';
 
@@ -38,7 +39,9 @@ class CustomDatePicker extends Component {
         } = this.props;
 
         return (
-            <div className="form-group">
+            <div className={classnames('form-group', {
+                'has-error': Boolean(touched && error),
+            })}>
                 <label>{label}</label>
                 <DatePicker
                     className="form-control"

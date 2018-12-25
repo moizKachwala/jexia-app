@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class TextInput extends Component {
 
@@ -25,7 +26,9 @@ class TextInput extends Component {
         const { label, type, disabled, placeholder,
             input = {}, meta: { touched, error } } = this.props;
         return (
-            <div className="form-group">
+            <div className={classnames('form-group', {
+                'has-error': Boolean(touched && error),
+            })}>
                 <label>{label}</label>
                 <input
                     {...input}

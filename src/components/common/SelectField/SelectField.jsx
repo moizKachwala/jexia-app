@@ -39,9 +39,11 @@ class SelectField extends Component {
     };
 
     render() {
-        const { options, label, disabled } = this.props;
+        const { options, label, disabled, meta: { touched, error } } = this.props;
         return (
-            <div className="form-group">
+            <div className={classnames('form-group', {
+                'has-error': Boolean(touched && error),
+            })}>
                 <label>{label}</label>
                 <select
                     {...this.props.input}
@@ -55,6 +57,7 @@ class SelectField extends Component {
                         </option>
                     ))}
                 </select>
+                {touched && error && <span className="error text-danger">{error}</span>}
             </div>
         );
     }
