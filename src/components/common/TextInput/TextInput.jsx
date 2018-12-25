@@ -10,7 +10,7 @@ class TextInput extends Component {
         input: PropTypes.shape({
             name: PropTypes.string,
             onChange: PropTypes.func,
-        })
+        }),
     }
 
     static defaultProps = {
@@ -28,6 +28,7 @@ class TextInput extends Component {
                     placeholder={placeholder}
                     readOnly={disabled}
                     type={type}
+                    autoComplete="off"
                 />
             </div>
         );

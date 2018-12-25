@@ -5,6 +5,7 @@ import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
 import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 import SelectField from '../../../common/SelectField/SelectField.jsx';
+import {Confirm} from '../../../common/Confirm';
 
 const FAMILY_TEMPLATE = {
     firstName: '',
@@ -20,6 +21,57 @@ class FamilyFieldArray extends Component {
 
     constructor() {
         super();
+
+        this.state = {
+            deleting: false,
+            onDelete: null,
+        };
+
+        this.beginDelete = this.beginDelete.bind(this);
+        this.handleDeleteCancel = this.handleDeleteCancel.bind(this);
+        this.handleDeleteConfirm = this.handleDeleteConfirm.bind(this);
+    }
+
+    beginDelete(onDelete) {
+        this.setState({
+            deleting: true,
+            onDelete,
+        });
+    }
+
+    handleDeleteCancel() {
+        this.setState({
+            deleting: false,
+            onDelete: null,
+        });
+    }
+
+    handleDeleteConfirm() {
+        const {deleting, onDelete} = this.state;
+        if (deleting && onDelete) {
+            onDelete();
+        }
+        this.setState({
+            deleting: false,
+            onDelete: null,
+        });
+    }
+
+    renderConfirmDialog() {
+        const {deleting} = this.state;
+        const confirmTitle = 'Delete Family Member';
+        const confirmMessage = 'Are you sure you want to delete this family member?';
+
+        return (
+            <Confirm
+                title={confirmTitle}
+                show={deleting}
+                onHide={this.handleDeleteCancel}
+                onAccept={this.handleDeleteConfirm}
+            >
+                {confirmMessage}
+            </Confirm>
+        );
     }
 
     renderFamilyMember(member, index) {
@@ -28,18 +80,7 @@ class FamilyFieldArray extends Component {
         const isNew = id === undefined;
         let handleDeleteClick;
         handleDeleteClick = () => {
-            fields.remove(index);
-
-            // const name = formValueSelector(`${member}.name`);
-            // if (isNew) {
-            //     const description = formValueSelector(`${member}.description`);
-            //     const value = formValueSelector(`${member}.value`);
-            //     if (!name && !description && !value) {
-            //         fields.remove(index);
-            //         return;
-            //     }
-            // }
-            // this.beginDelete(() => fields.remove(index), name);
+            this.beginDelete(() => fields.remove(index), name);
         };
         return (
             <div className="row" key={`${(id === undefined) ? index : id}`}>
@@ -113,6 +154,7 @@ class FamilyFieldArray extends Component {
         const { fields, formValueSelector, allowEdit } = this.props;
         return (
             <div className="col-md-12">
+                {this.renderConfirmDialog()}
                 <div className="row">
                     <div className="col-md-6 pull-right">
                         <Button theme="primary" disabled={!allowEdit} onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
