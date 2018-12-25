@@ -39,14 +39,14 @@ const selectStudentForm = createSelector(
                 ...student
             };
         }
-        
+        console.log(form);
         return form;
     }
 );
 
 export const StudentEditPage = connect(
     (state, props) => ({
-        formValueSelector: (field) => formValueSelector('student-create')(state, field),
+        formValueSelector: (field) => formValueSelector('student')(state, field),
         isEdit: selectIsEdit(state),
         studentId: selectSelectedStudent(state, props),
         nationalities: state.nationalities.data,

@@ -76,7 +76,7 @@ class FamilyFieldArray extends Component {
 
     renderFamilyMember(member, index) {
         const { formValueSelector, fields, nationalities, allowEdit } = this.props;
-        const id = formValueSelector(`${member}.id`);
+        const id = formValueSelector(`${member}.ID`);
         const isNew = id === undefined;
         let handleDeleteClick;
         handleDeleteClick = () => {
