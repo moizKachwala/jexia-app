@@ -19,4 +19,12 @@
             }
         }
     }
+
+    .react-datepicker-wrapper {
+        display: block;
+
+        .react-datepicker__input-container {
+            display: block;
+        }
+    }
 }

@@ -77,7 +77,7 @@ class StudentEditPage extends Component {
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
-        
+
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="studenteditpage">
@@ -102,6 +102,8 @@ class StudentEditPage extends Component {
                                 disabled={!allowEdit}
                             />
                         </div>
+                    </div>
+                    <div className="row">
                         <div className="col-md-6">
                             <Field
                                 label="Date of birth"
@@ -109,6 +111,7 @@ class StudentEditPage extends Component {
                                 name="dateOfBirth"
                                 placeholder="Date of birth"
                                 disabled={!allowEdit}
+                                normalize={value => (value ? moment(value).format('MM-DD-YYYY') : null)}
                             />
                         </div>
                         <div className="col-md-6">

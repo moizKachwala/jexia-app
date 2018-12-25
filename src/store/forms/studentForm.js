@@ -13,19 +13,19 @@ const validate = (student) => {
     const errors = {};
 
     if (!firstName) {
-        errors.firstName = "Please enter fistName";
+        errors.firstName = "Firstname must not be empty.";
     }
 
     if (!lastName) {
-        errors.lastName = "Please enter lastName";
+        errors.lastName = "Lastname must not be empty.";
     }
 
     if (!dateOfBirth) {
-        errors.dateOfBirth = "Please enter date of birth";
+        errors.dateOfBirth = "Date of birth must not be empty.";
     }
 
     if (!nationality) {
-        errors.nationality = "Please select nationality";
+        errors.nationality = "Nationality must not be empty.";
     }
 
     if (familyMembers.length === 0) {
@@ -44,13 +44,13 @@ const validate = (student) => {
             } = familyMember;
 
             if (!firstName) {
-                errors['firstName'] = 'FirstName must not be empty.';
+                errors['firstName'] = 'Firstname must not be empty.';
             }
             if (!lastName) {
-                errors['lastName'] = 'LastName must not be empty.';
+                errors['lastName'] = 'Lastname must not be empty.';
             }
             if (!dateOfBirth) {
-                errors['dateOfBirth'] = 'Date of Birth must not be empty.';
+                errors['dateOfBirth'] = 'Date of birth must not be empty.';
             }
             if (!nationality) {
                 errors['nationality'] = 'Nationality must not be empty.';

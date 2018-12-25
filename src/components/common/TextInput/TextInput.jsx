@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TextInput extends Component {
@@ -11,6 +11,10 @@ class TextInput extends Component {
             name: PropTypes.string,
             onChange: PropTypes.func,
         }),
+        meta: PropTypes.shape({
+            touched: PropTypes.bool,
+            error: PropTypes.string,
+        }),
     }
 
     static defaultProps = {
@@ -18,11 +22,12 @@ class TextInput extends Component {
     }
 
     render() {
-        const {label, type, disabled, placeholder, input = {}} = this.props;
+        const { label, type, disabled, placeholder,
+            input = {}, meta: { touched, error } } = this.props;
         return (
             <div className="form-group">
                 <label>{label}</label>
-                <input 
+                <input
                     {...input}
                     className="form-control"
                     placeholder={placeholder}
@@ -30,24 +35,10 @@ class TextInput extends Component {
                     type={type}
                     autoComplete="off"
                 />
+                {touched && error && <span className="error text-danger">{error}</span>}
             </div>
         );
     }
 }
 
 export default TextInput;
-
-// import React from 'react';
-// export const TextInput = ({ label, input }) => {
-//   return (
-//     <div>
-//       <div>
-//         {label}
-//       </div>
-//       <div>
-//         <input {...input} placeholder={label} type="text" />
-//       </div>
-//     </div>
-//   );
-// }
-// export default TextInput;

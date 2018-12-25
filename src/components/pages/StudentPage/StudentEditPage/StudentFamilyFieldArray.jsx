@@ -114,7 +114,7 @@ class FamilyFieldArray extends Component {
                             disabled={!allowEdit}
                         />
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <Field
                             label="Date of birth"
                             component={CustomDatePicker}
@@ -123,6 +123,15 @@ class FamilyFieldArray extends Component {
                             disabled={!allowEdit}
                         />
                     </div>
+                    {allowEdit && (
+                        <span className="studenteditpage-familylist-item-remover">
+                            <button onClick={handleDeleteClick} type="button" className="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </span>
+                    )}
+                </div>
+                <div className="row">
                     <div className="col-md-4">
                         <Field
                             label="Relationship"
@@ -149,14 +158,6 @@ class FamilyFieldArray extends Component {
                             disabled={!allowEdit}
                         />
                     </div>
-
-                    {allowEdit && (
-                        <span className="studenteditpage-familylist-item-remover">
-                            <button onClick={handleDeleteClick} type="button" className="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </span>
-                    )}
                 </div>
             </div>
         );
@@ -168,8 +169,15 @@ class FamilyFieldArray extends Component {
             <div className="col-md-12">
                 {this.renderConfirmDialog()}
                 <div className="row">
-                    <div className="col-md-6 pull-right">
-                        <Button theme="primary" disabled={!allowEdit} onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
+                    <div className="col-md-12">
+                        <button
+                            type="button"
+                            onClick={() => fields.push({ ...FAMILY_TEMPLATE })}
+                            disabled={!allowEdit}
+                            className="btn btn-primary pull-right"
+                        >
+                            Add Family Member
+                        </button>
                     </div>
                 </div>
 

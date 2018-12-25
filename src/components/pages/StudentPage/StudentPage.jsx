@@ -77,7 +77,7 @@ class StudentPage extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-4 center">
             <label>Select Role</label>
             <select value={this.state.selectedRole} className="form-control" onChange={this.handleRoleChange}>
               {systemRoles.map((opt, i) => (
@@ -90,6 +90,11 @@ class StudentPage extends Component {
         </div>
         <PageHeader>
           List Students
+          <div className="pull-right">
+            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+              Add Student
+            </Button>
+          </div>
         </PageHeader>
         <Table striped bordered condensed hover>
           <thead>
@@ -104,15 +109,11 @@ class StudentPage extends Component {
             {this.renderRows()}
           </tbody>
         </Table>
-
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-          Add Student
-        </Button>
-
         <Modal
           bsSize="large"
           aria-labelledby="contained-modal-title-lg"
-          show={this.state.show} onHide={this.handleClose}>
+          show={this.state.show}
+          onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>

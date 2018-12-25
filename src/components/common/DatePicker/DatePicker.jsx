@@ -45,11 +45,14 @@ class CustomDatePicker extends Component {
                     {...input}
                     placeholder={placeholder}
                     dateFormat="MM-DD-YYYY"
+                    selected={input.value ? moment(input.value) : null}
                     onChange={this.handleChange}
                     autoComplete="off"
+                    showYearDropdown
+                    scrollableYearDropdown
                     disabled={disabled}
                 />
-                {touched && error && <span>{error}</span>}
+                {touched && error && <span className="error text-danger">{error}</span>}
             </div>
         );
     }
