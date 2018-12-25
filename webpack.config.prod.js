@@ -4,8 +4,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-const cssFilename = 'static/css/[name].[contenthash:8].css';
+const shouldUseSourceMap = false; //process.env.GENERATE_SOURCEMAP !== 'false';
+const cssFilename = '[name].[contenthash:8].css';
 
 export default {
   bail: true,
@@ -13,9 +13,9 @@ export default {
   entry: ['babel-polyfill', './src/index.js'],
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
     publicPath: '/'
   },
 
@@ -23,7 +23,6 @@ export default {
     new HtmlWebpackPlugin({
       inject: true,
       template: './src/index.html',
-      favicon: './src/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -130,7 +129,7 @@ export default {
             loader: require.resolve('file-loader'),
             exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: '[name].[hash:8].[ext]',
             },
           },
         ]

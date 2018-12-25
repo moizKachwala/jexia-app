@@ -77,7 +77,7 @@ function *create(action) {
 
 function *update(action) {
     try {
-        yield put({type: actions.STUDENTS_CREATE_PENDING});
+        yield put({type: actions.STUDENTS_UPDATE_PENDING});
         const {student, callback} = action.payload;
         const {familyMembers, nationality} = student; //TODO
 
@@ -93,6 +93,7 @@ function *update(action) {
             calls.push(call(updateFamilyMember, familyMember));
         });
         yield all(calls);
+
         yield put({type: actions.STUDENTS_UPDATE_FULFILLED, student});
 
         if (callback) {
@@ -100,7 +101,7 @@ function *update(action) {
         }
     }
     catch (error) {
-        yield put({type: actions.STUDENTS_CREATE_REJECTED});
+        yield put({type: actions.STUDENTS_UPDATE_REJECTED});
     }
 }
 
