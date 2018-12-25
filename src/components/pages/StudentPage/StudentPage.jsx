@@ -68,7 +68,7 @@ class StudentPage extends Component {
   }
 
   render() {
-    const {role} = this.state;
+    const { role } = this.state;
     const hasEditRights = Boolean(role === "Registrars");
     return (
       <div>
@@ -97,17 +97,17 @@ class StudentPage extends Component {
           Add Student
         </Button>
 
-        <Modal 
-        bsSize="large"
-        aria-labelledby="contained-modal-title-lg"
-        show={this.state.show} onHide={this.handleClose}>
+        <Modal
+          bsSize="large"
+          aria-labelledby="contained-modal-title-lg"
+          show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title>Add Student</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <StudentEditPage 
-              hasEditRights={hasEditRights} 
-              handleCancel={this.handleClose} 
+            <StudentEditPage
+              hasEditRights={hasEditRights}
+              handleCancel={this.handleClose}
               handleCallback={this.handleCallback}
             />
           </Modal.Body>

@@ -92,69 +92,72 @@ class FamilyFieldArray extends Component {
             this.beginDelete(() => fields.remove(index), name);
         };
         return (
-            <div className="row" key={`${(id === undefined) ? index : id}`}>
-                <div className="col-md-4">
-                    <Field
-                        type="text"
-                        label="First Name"
-                        name={`${member}.firstName`}
-                        component={TextInput}
-                        placeholder="First Name"
-                        disabled={!allowEdit}
-                    />
-                </div>
-                <div className="col-md-4">
-                    <Field
-                        type="text"
-                        label="Last Name"
-                        name={`${member}.lastName`}
-                        component={TextInput}
-                        placeholder="Last Name"
-                        disabled={!allowEdit}
-                    />
-                </div>
-                <div className="col-md-4">
-                    <Field
-                        label="Date of birth"
-                        component={CustomDatePicker}
-                        name={`${member}.dateOfBirth`}
-                        placeholder="Date of birth"
-                        disabled={!allowEdit}
-                    />
-                </div>
-                <div className="col-md-4">
-                    <Field
-                        label="Relationship"
-                        component={SelectField}
-                        options={relationshipOptions.map((relationship) => ({
-                            label: relationship,
-                            value: relationship,
-                        }))}
-                        name={`${member}.relationship`}
-                        placeholder="Relationship"
-                        disabled={!allowEdit}
-                    />
-                </div>
-                <div className="col-md-4">
-                    <Field
-                        label="Nationality"
-                        component={SelectField}
-                        options={nationalities.map((nationality) => ({
-                            label: nationality.Title,
-                            value: nationality.ID,
-                        }))}
-                        name={`${member}.nationality`}
-                        placeholder="Nationality"
-                        disabled={!allowEdit}
-                    />
-                </div>
-                {allowEdit && (
+            <div className="studenteditpage-family-item" key={`${(id === undefined) ? index : id}`}>
+                <div className="row">
                     <div className="col-md-4">
-                        <span className="btn btn-danger"
-                            onClick={handleDeleteClick}
-                        >Delete</span>
+                        <Field
+                            type="text"
+                            label="First Name"
+                            name={`${member}.firstName`}
+                            component={TextInput}
+                            placeholder="First Name"
+                            disabled={!allowEdit}
+                        />
                     </div>
-                )}
+                    <div className="col-md-4">
+                        <Field
+                            type="text"
+                            label="Last Name"
+                            name={`${member}.lastName`}
+                            component={TextInput}
+                            placeholder="Last Name"
+                            disabled={!allowEdit}
+                        />
+                    </div>
+                    <div className="col-md-4">
+                        <Field
+                            label="Date of birth"
+                            component={CustomDatePicker}
+                            name={`${member}.dateOfBirth`}
+                            placeholder="Date of birth"
+                            disabled={!allowEdit}
+                        />
+                    </div>
+                    <div className="col-md-4">
+                        <Field
+                            label="Relationship"
+                            component={SelectField}
+                            options={relationshipOptions.map((relationship) => ({
+                                label: relationship,
+                                value: relationship,
+                            }))}
+                            name={`${member}.relationship`}
+                            placeholder="Relationship"
+                            disabled={!allowEdit}
+                        />
+                    </div>
+                    <div className="col-md-4">
+                        <Field
+                            label="Nationality"
+                            component={SelectField}
+                            options={nationalities.map((nationality) => ({
+                                label: nationality.Title,
+                                value: nationality.ID,
+                            }))}
+                            name={`${member}.nationality`}
+                            placeholder="Nationality"
+                            disabled={!allowEdit}
+                        />
+                    </div>
+
+                    {allowEdit && (
+                        <span className="studenteditpage-familylist-item-remover">
+                            <button onClick={handleDeleteClick} type="button" className="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </span>
+                    )}
+                </div>
             </div>
         );
     }
@@ -169,7 +172,9 @@ class FamilyFieldArray extends Component {
                         <Button theme="primary" disabled={!allowEdit} onClick={() => fields.push({ ...FAMILY_TEMPLATE })}>Add Family Member</Button>
                     </div>
                 </div>
-                <div>
+
+                <div className="studenteditpage-family-item-list">
+                    <label>Family Member(s)</label>
                     {fields.map((member, index) => this.renderFamilyMember(member, index))}
                 </div>
             </div>

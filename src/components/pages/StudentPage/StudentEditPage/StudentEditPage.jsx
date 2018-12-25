@@ -11,6 +11,8 @@ import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
 import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 import SelectField from '../../../common/SelectField/SelectField.jsx';
 
+import './StudentEditPage.scss';
+
 class StudentEditPage extends Component {
 
     constructor(props) {
@@ -77,76 +79,76 @@ class StudentEditPage extends Component {
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
-                <div className="row">
-                    <div className="col-md-6">
-                        <Field
-                            type="text"
-                            label="First Name"
-                            component={TextInput}
-                            name="firstName"
-                            placeholder="First Name"
-                            disabled={!allowEdit}
+                <div className="studenteditpage">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Field
+                                type="text"
+                                label="First Name"
+                                component={TextInput}
+                                name="firstName"
+                                placeholder="First Name"
+                                disabled={!allowEdit}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <Field
+                                type="text"
+                                label="Last Name"
+                                component={TextInput}
+                                name="lastName"
+                                placeholder="Last Name"
+                                disabled={!allowEdit}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <Field
+                                label="Date of birth"
+                                component={CustomDatePicker}
+                                name="dateOfBirth"
+                                placeholder="Date of birth"
+                                disabled={!allowEdit}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <Field
+                                label="Nationality"
+                                component={SelectField}
+                                options={nationalities.map((nationality) => ({
+                                    label: nationality.Title,
+                                    value: nationality.ID,
+                                }))}
+                                name="nationality"
+                                placeholder="Nationality"
+                                disabled={!allowEdit}
+                            />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <FieldArray
+                            name="familyMembers"
+                            component={FamilyFieldArray}
+                            formValueSelector={formValueSelector}
+                            nationalities={nationalities}
+                            allowEdit={allowEdit}
                         />
                     </div>
-                    <div className="col-md-6">
-                        <Field
-                            type="text"
-                            label="Last Name"
-                            component={TextInput}
-                            name="lastName"
-                            placeholder="Last Name"
-                            disabled={!allowEdit}
-                        />
-                    </div>
-
-                    <div className="col-md-6">
-                        <Field
-                            label="Date of birth"
-                            component={CustomDatePicker}
-                            name="dateOfBirth"
-                            placeholder="Date of birth"
-                            disabled={!allowEdit}
-                        />
-                    </div>
-
-                    <div className="col-md-6">
-                        <Field
-                            label="Nationality"
-                            component={SelectField}
-                            options={nationalities.map((nationality) => ({
-                                label: nationality.Title,
-                                value: nationality.ID,
-                            }))}
-                            name="nationality"
-                            placeholder="Nationality"
-                            disabled={!allowEdit}
-                        />
-                    </div>
-                </div>
-                <div className="row">
-                    <FieldArray
-                        name="familyMembers"
-                        component={FamilyFieldArray}
-                        formValueSelector={formValueSelector}
-                        nationalities={nationalities}
-                        allowEdit={allowEdit}
-                    />
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <Button
-                            type="submit"
-                            disabled={pristine || submitting || invalid}
-                            theme="primary"
-                            onClick={noop}
-                        >
-                            Submit
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Button
+                                type="submit"
+                                disabled={pristine || submitting || invalid}
+                                theme="primary"
+                                onClick={noop}
+                            >
+                                Submit
                         </Button>
-                        <Button
-                            onClick={handleCancel}
-                        >
-                            Cancel
+                            <Button
+                                onClick={handleCancel}
+                            >
+                                Cancel
                         </Button>
+                        </div>
                     </div>
                 </div>
             </form>

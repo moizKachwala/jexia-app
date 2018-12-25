@@ -1,0 +1,22 @@
+.studenteditpage {
+    padding: 10px;
+
+    .studenteditpage-family-item-list {
+        margin: 10px 0 10px 0;
+
+        .studenteditpage-family-item {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            margin-bottom: 5px;
+
+            .studenteditpage-familylist-item-remover {
+                position: absolute;
+                right: 25px;
+    
+                .studenteditpage-familylist-item-control {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
