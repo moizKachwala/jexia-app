@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {formValueSelector} from 'redux-form';
 
 import StudentEditPageComponent from './StudentEditPage.jsx';
-import studentCreateForm from '../../../../store/forms/studentCreateForm';
+import studentForm from '../../../../store/forms/studentForm';
 import {create, get, update, reset} from '../../../../store/actions/students';
 import {list} from '../../../../store/actions/nationalities';
 import { createSelector } from 'reselect';
@@ -61,4 +61,4 @@ export const StudentEditPage = connect(
             studentsReset: reset,
         }, dispatch)
     })
-)(studentCreateForm(StudentEditPageComponent));
+)(studentForm(StudentEditPageComponent));

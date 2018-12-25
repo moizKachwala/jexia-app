@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
-import {createSelector} from 'reselect';
+import { createSelector } from 'reselect';
 
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -25,15 +25,15 @@ class StudentEditPage extends Component {
         this.selectInitialize = createSelector(
             (props) => props.initialValues,
             (initialValues) => {
-                const {initialize} = this.props;
-                initialize({...initialValues});
+                const { initialize } = this.props;
+                initialize({ ...initialValues });
             }
         );
     }
 
     componentDidMount() {
-        const {actions: {studentGet, nationalitiesList}, isEdit, studentId} = this.props;
-        if(isEdit) {
+        const { actions: { studentGet, nationalitiesList }, isEdit, studentId } = this.props;
+        if (isEdit) {
             studentGet(studentId);
         }
         nationalitiesList();
@@ -45,22 +45,22 @@ class StudentEditPage extends Component {
     }
 
     componentWillUnmount() {
-        const {actions} = this.props;
+        const { actions } = this.props;
         actions.studentsReset();
     }
 
     submit(form) {
-        const {ID} = form;
-        const { 
+        const { ID } = form;
+        const {
             isEdit, invalid, pristine, handleCallback,
             actions: { studentCreate, studentUpdate },
-         } = this.props;
+        } = this.props;
 
-        if(pristine || invalid) {
+        if (pristine || invalid) {
             return;
         }
 
-        if(isEdit) {
+        if (isEdit) {
             studentUpdate(ID, form, handleCallback);
         }
         else {
@@ -69,15 +69,15 @@ class StudentEditPage extends Component {
     }
 
     render() {
-        const { 
-            pristine, handleSubmit, submitting, 
+        const {
+            pristine, handleSubmit, submitting,
             handleCancel, formValueSelector, nationalities, hasEditRights, isEdit, invalid
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
-                <div className="row">                
+                <div className="row">
                     <div className="col-md-6">
                         <Field
                             type="text"
@@ -136,7 +136,7 @@ class StudentEditPage extends Component {
                     <div className="col-md-12">
                         <Button
                             type="submit"
-                            disabled={pristine || submitting}
+                            disabled={pristine || submitting || invalid}
                             theme="primary"
                             onClick={noop}
                         >

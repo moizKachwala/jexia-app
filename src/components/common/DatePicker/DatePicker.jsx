@@ -13,7 +13,7 @@ class CustomDatePicker extends Component {
         }).isRequired,
         meta: PropTypes.shape({
             touched: PropTypes.bool,
-            error: PropTypes.bool,
+            error: PropTypes.string,
         }),
         placeholder: PropTypes.string,
     }

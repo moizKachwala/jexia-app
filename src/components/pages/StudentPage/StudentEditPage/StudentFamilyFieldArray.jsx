@@ -5,7 +5,7 @@ import { TextInput } from '../../../common/TextInput';
 import { Button } from '../../../common/Button';
 import CustomDatePicker from '../../../common/DatePicker/DatePicker.jsx';
 import SelectField from '../../../common/SelectField/SelectField.jsx';
-import {Confirm} from '../../../common/Confirm';
+import { Confirm } from '../../../common/Confirm';
 
 const FAMILY_TEMPLATE = {
     firstName: '',
@@ -47,7 +47,7 @@ class FamilyFieldArray extends Component {
     }
 
     handleDeleteConfirm() {
-        const {deleting, onDelete} = this.state;
+        const { deleting, onDelete } = this.state;
         if (deleting && onDelete) {
             onDelete();
         }
@@ -58,7 +58,7 @@ class FamilyFieldArray extends Component {
     }
 
     renderConfirmDialog() {
-        const {deleting} = this.state;
+        const { deleting } = this.state;
         const confirmTitle = 'Delete Family Member';
         const confirmMessage = 'Are you sure you want to delete this family member?';
 
@@ -80,6 +80,15 @@ class FamilyFieldArray extends Component {
         const isNew = id === undefined;
         let handleDeleteClick;
         handleDeleteClick = () => {
+            if (isNew) {
+                const firstName = formValueSelector(`${member}.firstName`);
+                const lastName = formValueSelector(`${member}.lastName`);
+                const dateOfBirth = formValueSelector(`${member}.dateOfBirth`);
+                if (!firstName && !lastName && !dateOfBirth) {
+                    fields.remove(index);
+                    return;
+                }
+            }
             this.beginDelete(() => fields.remove(index), name);
         };
         return (
