@@ -40,6 +40,7 @@ const validate = (student) => {
                 firstName,
                 lastName,
                 dateOfBirth,
+                relationship,
                 nationality
             } = familyMember;
 
@@ -51,6 +52,9 @@ const validate = (student) => {
             }
             if (!dateOfBirth) {
                 errors['dateOfBirth'] = 'Date of birth must not be empty.';
+            }
+            if (!relationship) {
+                errors['relationship'] = 'Relationship must not be empty.';
             }
             if (!nationality) {
                 errors['nationality'] = 'Nationality must not be empty.';

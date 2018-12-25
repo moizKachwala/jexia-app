@@ -16,17 +16,8 @@ class SelectField extends Component {
 
         error: PropTypes.string,
 
-        /**
-         * Select drop down options
-         */
         options: PropTypes.arrayOf(PropTypes.shape({
-            /**
-             * option value
-             */
             value: PropTypes.int,
-            /**
-             * Visible option label
-             */
             label: PropTypes.string.isRequired,
         })),
     };

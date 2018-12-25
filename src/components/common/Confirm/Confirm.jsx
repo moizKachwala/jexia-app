@@ -1,12 +1,3 @@
-/**
- * Copyright (c) 2017 Automation Anywhere.
- * All rights reserved.
- *
- * This software is the proprietary information of Automation Anywhere.
- * You shall use it only in accordance with the terms of the license agreement
- * you entered into with Automation Anywhere.
- */
-
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
