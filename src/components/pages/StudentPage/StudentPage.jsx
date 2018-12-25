@@ -93,7 +93,7 @@ class StudentPage extends Component {
           All Students
           <div className="pull-right">
             <Button theme="primary" onClick={this.handleShow}>
-              Add Student
+              Add New Student
             </Button>
           </div>
         </PageHeader>
