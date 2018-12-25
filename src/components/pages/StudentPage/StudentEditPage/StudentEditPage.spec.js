@@ -3,21 +3,23 @@ import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import App from './App.jsx';
+import StudentEditPage from './StudentEditPage.jsx';
 
-describe('src/components/App.jsx', () => {
-    let component, instance;
+describe('components/pages/StudentEditPage/StudentEditPage', () => {
+    let component;
 
     const shallowComponent = (props) => {
-        return shallow( 
-            <App {...props} />
+        return shallow(
+            <StudentEditPage
+                {...props}
+            />
         );
     };
 
     beforeEach(() => {
         component = shallowComponent();
     });
-
+    
     it('should render without any error', () => {
         expect(component).to.exist;
     });
