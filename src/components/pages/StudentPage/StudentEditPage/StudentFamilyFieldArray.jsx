@@ -6,6 +6,7 @@ import {
     TextInput, Button, CustomDatePicker,
     SelectField, Confirm
 } from '../../../common';
+import {formatDateForInput} from '../../../../util/date';
 
 const FAMILY_TEMPLATE = {
     firstName: '',
@@ -127,6 +128,7 @@ class FamilyFieldArray extends Component {
                             name={`${member}.dateOfBirth`}
                             placeholder="Date of birth"
                             disabled={!allowEdit}
+                            format={formatDateForInput}
                         />
                     </div>
                     {allowEdit && (
@@ -178,7 +180,7 @@ class FamilyFieldArray extends Component {
                     <label>Family Member(s)</label>
                     {
                         (!studentGetPending && fields.length === 0) && (
-                            <div className="alert alert-danger">Atleast one family member is required!</div>
+                            <div className="alert alert-warning">Atleast one family member is required!</div>
                         )
                     }
                     {fields.map((member, index) => this.renderFamilyMember(member, index))}

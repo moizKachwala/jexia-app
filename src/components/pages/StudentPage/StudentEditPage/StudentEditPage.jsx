@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import { TextInput, Button, CustomDatePicker, SelectField } from '../../../common';
 import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
+import {formatDateForInput} from '../../../../util/date';
 
 import './StudentEditPage.scss';
 
@@ -121,6 +122,7 @@ class StudentEditPage extends Component {
                                 name="dateOfBirth"
                                 placeholder="Date of birth"
                                 disabled={!allowEdit}
+                                format={formatDateForInput}
                             />
                         </div>
                         <div className="col-md-6">
