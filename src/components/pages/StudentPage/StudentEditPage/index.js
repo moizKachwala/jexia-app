@@ -10,19 +10,17 @@ import { createSelector } from 'reselect';
 import {createStudentSelector} from '../../../../store/selectors/students';
 
 const selectSelectedStudent = (state) => state.students.selectedStudentId;
+const selectStudent = (state) => state.students.selectedStudent;
 
-//TODO change the way null check is done.
 const selectIsEdit = createSelector(
     selectSelectedStudent,
-    (studentId) => (studentId !== null)
+    (studentId) => studentId
 );
 
-//const selectStudent = createStudentSelector(selectSelectedStudent);
-
-const selectStudentForm = createSelector(
-    //selectStudent,
-    (state) => state.students.selectedStudent,
-    (student) => {
+const selectStudentForm = createSelector(    
+    selectStudent,
+    selectIsEdit,
+    (student, isEdit) => {
         let form = {
             firstName: '',
             lastName: '',
@@ -33,8 +31,7 @@ const selectStudentForm = createSelector(
             ],
         };
 
-        //TODO change the id how we check for edit.
-        if(student.ID) {
+        if(isEdit) {
             form = {
                 ...student
             };

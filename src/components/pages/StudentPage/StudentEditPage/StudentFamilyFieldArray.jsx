@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
 
-import { 
-    TextInput, Button, CustomDatePicker, 
-    SelectField, Confirm 
+import {
+    TextInput, Button, CustomDatePicker,
+    SelectField, Confirm
 } from '../../../common';
 
 const FAMILY_TEMPLATE = {
@@ -167,22 +167,26 @@ class FamilyFieldArray extends Component {
         return (
             <div className="col-md-12">
                 {this.renderConfirmDialog()}
+                <div className="studenteditpage-family-item-list">
+                    <label>Family Member(s)</label>
+                    {
+                        (fields.length === 0) && (
+                            <div className="alert alert-danger">Atleast one family member is required!</div>
+                        )
+                    }
+                    {fields.map((member, index) => this.renderFamilyMember(member, index))}
+                </div>
                 <div className="row">
                     <div className="col-md-12">
                         <button
                             type="button"
                             onClick={() => fields.push({ ...FAMILY_TEMPLATE })}
                             disabled={!allowEdit}
-                            className="btn btn-primary pull-right"
+                            className="btn btn-link"
                         >
-                            Add Family Member
+                           + Add Family Member
                         </button>
                     </div>
-                </div>
-
-                <div className="studenteditpage-family-item-list">
-                    <label>Family Member(s)</label>
-                    {fields.map((member, index) => this.renderFamilyMember(member, index))}
                 </div>
             </div>
         );

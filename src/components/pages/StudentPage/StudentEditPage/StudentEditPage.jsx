@@ -107,7 +107,6 @@ class StudentEditPage extends Component {
                                 name="dateOfBirth"
                                 placeholder="Date of birth"
                                 disabled={!allowEdit}
-                                normalize={value => (value ? moment(value).format('MM-DD-YYYY') : null)}
                             />
                         </div>
                         <div className="col-md-6">
