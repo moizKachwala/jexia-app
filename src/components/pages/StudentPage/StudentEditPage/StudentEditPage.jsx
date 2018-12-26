@@ -133,20 +133,22 @@ class StudentEditPage extends Component {
                             allowEdit={allowEdit}
                         />
                     </div>
+                    
                     <div className="row">
-                        <div className="col-md-12">
+                        <hr />
+                        <div className="col-md-3 pull-right">
                             <Button
                                 type="submit"
                                 disabled={pristine || submitting || invalid}
                                 theme="primary"
                                 onClick={noop}
                             >
-                                Submit
-                        </Button>
+                                Save Changes
+                        </Button>&nbsp;
                             <Button
                                 onClick={handleCancel}
                             >
-                                Cancel
+                                Close
                         </Button>
                         </div>
                     </div>

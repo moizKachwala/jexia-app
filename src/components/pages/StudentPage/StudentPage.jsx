@@ -125,9 +125,6 @@ class StudentPage extends Component {
               handleCallback={this.handleCallback}
             />
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );

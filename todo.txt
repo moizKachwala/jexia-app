@@ -7,3 +7,4 @@
 8. change title to edit student.
 9. add prop types to forms
 10 format student page with modal.
+10 edit with new family member.
