@@ -10,8 +10,7 @@ import './DatePicker.scss';
 class CustomDatePicker extends Component {
     static propTypes = {
         input: PropTypes.shape({
-            onChange: PropTypes.func.isRequired,
-            value: PropTypes.string.isRequired,
+            onChange: PropTypes.func.isRequired
         }).isRequired,
         meta: PropTypes.shape({
             touched: PropTypes.bool,

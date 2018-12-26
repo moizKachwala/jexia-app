@@ -1,6 +1,6 @@
 import {
     METHOD_GET, HEADERS_JSON_SEND, METHOD_POST, 
-    METHOD_PUT, HEADERS_JSON_SEND_RECEIVE, 
+    METHOD_PUT, HEADERS_JSON_SEND_RECEIVE, METHOD_DELETE,
     HEADERS_JSON_RECEIVE, SERVER_URL
 } from '../constants/api';
 import {apiHandleResponse} from '../../util/api';
@@ -86,6 +86,13 @@ const setFamilyMemberNationality = (familyMemberId, nationalityId) => {
     }).then(apiHandleResponse);
 };
 
+const deleteFamilyMember = (familyMemberId) => {
+    return fetch(`${SERVER_URL}/api/FamilyMembers/${familyMemberId}`, {
+        method: METHOD_DELETE,
+        headers:HEADERS_JSON_SEND_RECEIVE,
+    }).then(apiHandleResponse);
+};
+
 export {
     getStudents,
     getStudentById,
@@ -98,4 +105,5 @@ export {
     getFamilyMembersByStudentId,
     getFamilyMemberById,
     setFamilyMemberNationality,
+    deleteFamilyMember,
 };
