@@ -3,6 +3,7 @@ import { Field, FieldArray } from 'redux-form';
 import { noop } from 'lodash';
 import { createSelector } from 'reselect';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import { TextInput, Button, CustomDatePicker, SelectField } from '../../../common';
 import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
@@ -10,6 +11,12 @@ import FamilyFieldArray from './StudentFamilyFieldArray.jsx';
 import './StudentEditPage.scss';
 
 class StudentEditPage extends Component {
+
+    static propTypes = {
+        hasEditRights: PropTypes.bool,
+        handleCancel: PropTypes.func,
+        handleCallback: PropTypes.func,
+    }
 
     constructor(props) {
         super(props);
@@ -73,10 +80,17 @@ class StudentEditPage extends Component {
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
+        const pageTitle = isEdit ? 'Edit Student' : 'Add Student';
 
         return (
             <form onSubmit={handleSubmit(props => this.submit(props))}>
                 <div className="studenteditpage">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h3>{pageTitle}</h3>
+                            <hr />
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-md-6">
                             <Field
@@ -132,7 +146,7 @@ class StudentEditPage extends Component {
                             allowEdit={allowEdit}
                         />
                     </div>
-                    
+
                     <div className="row">
                         <hr />
                         <div className="col-md-3 pull-right">

@@ -130,9 +130,6 @@ class StudentPage extends Component {
           aria-labelledby="contained-modal-title-lg"
           show={this.state.show}
           onHide={this.handleClose}>
-          <Modal.Header>
-            <Modal.Title>Add Student</Modal.Title>
-          </Modal.Header>
           <Modal.Body>
             <StudentEditPage
               hasEditRights={hasEditRights}

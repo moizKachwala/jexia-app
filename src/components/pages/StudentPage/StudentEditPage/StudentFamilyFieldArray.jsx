@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import {
     TextInput, Button, CustomDatePicker,
@@ -17,6 +18,11 @@ const FAMILY_TEMPLATE = {
 const relationshipOptions = ['Parent', 'Sibling', 'Spouse'];
 
 class FamilyFieldArray extends Component {
+
+    static propTypes = {
+        allowEdit: PropTypes.bool,
+        nationalities: PropTypes.array,
+    }
 
     constructor() {
         super();
