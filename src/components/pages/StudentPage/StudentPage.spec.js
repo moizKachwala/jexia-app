@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    shallow
-} from 'enzyme';
-import {
-    expect
-} from 'chai';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
 import sinon from 'sinon';
 
 import StudentPage from './StudentPage.jsx';
@@ -16,8 +12,8 @@ describe('components/pages/StudentPage.jsx', () => {
 
     const shallowComponent = (props) => {
         return shallow( <
-            StudentPage { ...props
-            }
+            StudentPage 
+                {...props}
             />
         );
     };
@@ -29,7 +25,6 @@ describe('components/pages/StudentPage.jsx', () => {
                 studentSelect,
             }
         });
-
         instance = component.instance();
     });
 
@@ -56,6 +51,4 @@ describe('components/pages/StudentPage.jsx', () => {
       instance.selectStudent();
       expect(studentSelect.called).to.equal(true);
     });
-
-
 });

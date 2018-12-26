@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import classnames from 'classnames';
+import {DATE_FORMAT} from '../../../store/constants/date';
 
 import './DatePicker.scss';
 
@@ -29,7 +30,7 @@ class CustomDatePicker extends Component {
     }
 
     handleChange(date) {
-        this.props.input.onChange(moment(date).format('MM-DD-YYYY'));
+        this.props.input.onChange(moment(date).format(DATE_FORMAT));
     }
 
     render() {
@@ -47,7 +48,7 @@ class CustomDatePicker extends Component {
                     className="form-control"
                     {...input}
                     placeholderText={placeholder}
-                    dateFormat="MM-DD-YYYY"
+                    dateFormat={DATE_FORMAT}
                     selected={input.value ? moment(input.value) : null}
                     onChange={this.handleChange}
                     autoComplete="off"

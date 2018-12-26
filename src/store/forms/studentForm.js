@@ -1,23 +1,16 @@
-import {
-    reduxForm
-} from 'redux-form';
+import {reduxForm} from 'redux-form';
+import moment from 'moment';
 
-const validate = (student) => {
-    const {
-        firstName,
-        lastName,
-        dateOfBirth,
-        nationality,
-        familyMembers = []
-    } = student;
+export const validate = (values = {}, props = {}) => {
+    const { firstName, lastName, dateOfBirth, nationality, familyMembers = []} = values;
     const errors = {};
 
     if (!firstName) {
-        errors.firstName = "Firstname must not be empty.";
+        errors.firstName = "First Name must not be empty.";
     }
 
     if (!lastName) {
-        errors.lastName = "Lastname must not be empty.";
+        errors.lastName = "Last Name must not be empty.";
     }
 
     if (!dateOfBirth) {

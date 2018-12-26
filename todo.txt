@@ -1,2 +1,0 @@
-Do not accept future birthdate
-Valiate 'invalid date' in birthdate

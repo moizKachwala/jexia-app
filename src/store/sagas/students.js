@@ -1,49 +1,27 @@
-import {
-    delay
-} from 'redux-saga';
-import {
-    takeEvery,
-    put,
-    call,
-    all,
-    cps
-} from 'redux-saga/effects';
+import {takeEvery, put, call, all} from 'redux-saga/effects';
 
 import * as actions from '../actions/students';
 import * as API from '../api/students';
 
 function* list() {
     try {
-        yield put({
-            type: actions.STUDENTS_LIST_PENDING
-        });
+        yield put({type: actions.STUDENTS_LIST_PENDING});
         const payload = yield call(API.getStudents);
-        yield put({
-            type: actions.STUDENTS_LIST_FULFILLED,
-            payload
-        });
+        yield put({type: actions.STUDENTS_LIST_FULFILLED, payload});
     } catch (error) {
-        yield put({
-            type: actions.STUDENTS_LIST_REJECTED
-        });
+        yield put({type: actions.STUDENTS_LIST_REJECTED});
     }
 }
 
 function* get(action) {
-    const {
-        studentId
-    } = action.payload;
+    const {studentId} = action.payload;
     try {
-        yield put({
-            type: actions.STUDENTS_GET_PENDING
-        });
+        yield put({type: actions.STUDENTS_GET_PENDING});
         const student = yield call(API.getStudentById, studentId);
-        const {
-            nationality
-        } = yield call(API.getStudentNationality, studentId);
+        const {nationality} = yield call(API.getStudentNationality, studentId);
         const familyMembers = yield call(API.getFamilyMembersByStudentId, studentId);
 
-        const newFamilyMembers = familyMembers.map((family) => {
+        const familyMembersWithNationality = familyMembers.map((family) => {
             return {
                 ...family,
                 nationality: family.nationality.ID
@@ -55,24 +33,19 @@ function* get(action) {
                 ...student,
                 nationality: nationality.ID,
             },
-            familyMembers: [...newFamilyMembers],
+            familyMembers: [...familyMembersWithNationality],
         };
-        yield put({
-            type: actions.STUDENTS_GET_FULFILLED,
-            payload
-        });
+        yield put({type: actions.STUDENTS_GET_FULFILLED, payload});
+
     } catch (error) {
-        yield put({
-            type: actions.STUDENTS_GET_REJECTED
-        });
+        
+        yield put({type: actions.STUDENTS_GET_REJECTED});
     }
 }
 
 function* create(action) {
     try {
-        yield put({
-            type: actions.STUDENTS_CREATE_PENDING
-        });
+        yield put({type: actions.STUDENTS_CREATE_PENDING});
         const {
             student,
             callback
@@ -95,10 +68,7 @@ function* create(action) {
         });
         yield all(calls);
 
-        yield put({
-            type: actions.STUDENTS_CREATE_FULFILLED,
-            newStudent
-        });
+        yield put({type: actions.STUDENTS_CREATE_FULFILLED,newStudent});
 
         if (callback) {
             callback();
