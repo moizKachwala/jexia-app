@@ -110,7 +110,7 @@ class FamilyFieldArray extends Component {
             this.beginDelete(() => this.performDelete(fields, index, id));
         };
         return (
-            <div className="studenteditpage-family-item" key={`${(id === undefined) ? index : id}`}>
+            <div className="studenteditpage-family-item" key={index}>
                 <div className="row">
                     <div className="col-md-4">
                         <Field
