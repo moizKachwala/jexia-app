@@ -34,12 +34,12 @@ class StudentPage extends Component {
     studentList();
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
-
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleClose() {
+    this.setState({ show: false });
   }
 
   handleCallback() {

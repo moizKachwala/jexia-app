@@ -22,12 +22,6 @@ class StudentEditPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            startDate: moment(),
-        };
-
-        this.submit = this.submit.bind(this);
-
         this.selectInitialize = createSelector(
             (props) => props.initialValues,
             (initialValues) => {
@@ -35,6 +29,8 @@ class StudentEditPage extends Component {
                 initialize({ ...initialValues });
             }
         );
+
+        this.submit = this.submit.bind(this);
     }
 
     componentDidMount() {

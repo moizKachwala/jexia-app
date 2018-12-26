@@ -43,7 +43,6 @@ function* get(action) {
         } = yield call(API.getStudentNationality, studentId);
         const familyMembers = yield call(API.getFamilyMembersByStudentId, studentId);
 
-        //TODO name change logic
         const newFamilyMembers = familyMembers.map((family) => {
             return {
                 ...family,
@@ -81,7 +80,7 @@ function* create(action) {
         const {
             familyMembers,
             nationality
-        } = student; //TODO
+        } = student;
 
         //creating new student
         const newStudent = yield call(API.createStudent, student);
@@ -120,10 +119,11 @@ function* update(action) {
             student,
             callback
         } = action.payload;
+        
         const {
             familyMembers,
             nationality
-        } = student; //TODO
+        } = student;
 
         //update student
         yield call(API.updateStudent, student.ID, student);
