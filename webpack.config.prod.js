@@ -23,6 +23,7 @@ export default {
     new HtmlWebpackPlugin({
       inject: true,
       template: './src/index.html',
+      favicon: './src/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
