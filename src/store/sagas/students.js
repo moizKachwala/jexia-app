@@ -85,15 +85,9 @@ function* update(action) {
         yield put({
             type: actions.STUDENTS_UPDATE_PENDING
         });
-        const {
-            student,
-            callback
-        } = action.payload;
+        const {student, callback} = action.payload;
         
-        const {
-            familyMembers,
-            nationality
-        } = student;
+        const { familyMembers, nationality, deletingMembers = [] } = student;
 
         //update student
         yield call(API.updateStudent, student.ID, student);
@@ -112,10 +106,16 @@ function* update(action) {
         });
         yield all(calls);
 
-        yield put({
-            type: actions.STUDENTS_UPDATE_FULFILLED,
-            student
-        });
+        if (deletingMembers.length) {
+            //delete family members
+            const deleteCalls = [];
+            deletingMembers.forEach(id => {
+                deleteCalls.push(call(API.deleteFamilyMember, id));
+            });
+            yield all(deleteCalls);
+        }
+
+        yield put({type: actions.STUDENTS_UPDATE_FULFILLED, student});
 
         if (callback) {
             callback();

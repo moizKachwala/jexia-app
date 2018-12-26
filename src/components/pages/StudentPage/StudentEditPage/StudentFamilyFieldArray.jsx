@@ -37,6 +37,7 @@ class FamilyFieldArray extends Component {
         this.beginDelete = this.beginDelete.bind(this);
         this.handleDeleteCancel = this.handleDeleteCancel.bind(this);
         this.handleDeleteConfirm = this.handleDeleteConfirm.bind(this);
+        this.performDelete = this.performDelete.bind(this);
     }
 
     beginDelete(onDelete) {
@@ -81,6 +82,16 @@ class FamilyFieldArray extends Component {
         );
     }
 
+    performDelete(fields, index, id) {
+        if(id) {
+            const {formValueSelector, change} = this.props;
+            const deletingMembers = formValueSelector('deletingMembers') || [];
+            deletingMembers.push(id);
+            change('deletingMembers', deletingMembers);
+        }
+        fields.remove(index);
+    }
+
     renderFamilyMember(member, index) {
         const { formValueSelector, fields, nationalities, allowEdit } = this.props;
         const id = formValueSelector(`${member}.ID`);
@@ -96,7 +107,7 @@ class FamilyFieldArray extends Component {
                     return;
                 }
             }
-            this.beginDelete(() => fields.remove(index), name);
+            this.beginDelete(() => this.performDelete(fields, index, id));
         };
         return (
             <div className="studenteditpage-family-item" key={`${(id === undefined) ? index : id}`}>

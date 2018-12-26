@@ -89,8 +89,7 @@ const setFamilyMemberNationality = (familyMemberId, nationalityId) => {
 const deleteFamilyMember = (familyMemberId) => {
     return fetch(`${SERVER_URL}/api/FamilyMembers/${familyMemberId}`, {
         method: METHOD_DELETE,
-        headers:HEADERS_JSON_SEND_RECEIVE,
-    }).then(apiHandleResponse);
+    });
 };
 
 export {

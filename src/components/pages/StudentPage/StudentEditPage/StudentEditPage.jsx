@@ -73,7 +73,8 @@ class StudentEditPage extends Component {
     render() {
         const {
             pristine, handleSubmit, submitting, studentGetPending,
-            handleCancel, formValueSelector, nationalities, hasEditRights, isEdit, invalid
+            handleCancel, formValueSelector, nationalities, hasEditRights, isEdit, invalid,
+            actions: {change},
         } = this.props;
 
         const allowEdit = ((isEdit && hasEditRights) || !isEdit);
@@ -143,6 +144,7 @@ class StudentEditPage extends Component {
                             nationalities={nationalities}
                             allowEdit={allowEdit}
                             studentGetPending={studentGetPending}
+                            change={change}
                         />
                     </div>
 

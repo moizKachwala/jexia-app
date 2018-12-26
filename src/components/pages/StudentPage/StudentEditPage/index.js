@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {formValueSelector} from 'redux-form';
+import {formValueSelector, change} from 'redux-form';
 
 import StudentEditPageComponent from './StudentEditPage.jsx';
 import studentForm from '../../../../store/forms/studentForm';
@@ -56,6 +56,7 @@ export const StudentEditPage = connect(
             studentGet: get,
             studentUpdate: update,
             studentsReset: reset,
+            change: (field, value) => change('student', field, value),
         }, dispatch)
     })
 )(studentForm(StudentEditPageComponent));
