@@ -56,10 +56,18 @@ export default createReducer(initialState, {
     }),
     [actions.STUDENTS_GET_FULFILLED]: (state, student) => ({
         ...state,
+        get: {
+            ...initialStatusState,
+        },
         selectedStudent: student,
     }),
     [actions.STUDENTS_GET_REJECTED]: (state, errorMessage) => ({
-        ...state
+        ...state,
+        get: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
     }),
 
     [actions.STUDENTS_CREATE_PENDING]: (state) => ({ 

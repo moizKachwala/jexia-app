@@ -22,6 +22,7 @@ class FamilyFieldArray extends Component {
     static propTypes = {
         allowEdit: PropTypes.bool,
         nationalities: PropTypes.array,
+        studentGetPending: PropTypes.bool,
     }
 
     constructor() {
@@ -169,14 +170,14 @@ class FamilyFieldArray extends Component {
     }
 
     render() {
-        const { fields, formValueSelector, allowEdit } = this.props;
+        const { fields, formValueSelector, allowEdit, studentGetPending } = this.props;
         return (
             <div className="col-md-12">
                 {this.renderConfirmDialog()}
                 <div className="studenteditpage-family-item-list">
                     <label>Family Member(s)</label>
                     {
-                        (fields.length === 0) && (
+                        (!studentGetPending && fields.length === 0) && (
                             <div className="alert alert-danger">Atleast one family member is required!</div>
                         )
                     }

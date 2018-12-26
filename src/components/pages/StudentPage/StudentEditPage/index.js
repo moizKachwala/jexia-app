@@ -47,6 +47,7 @@ export const StudentEditPage = connect(
         studentId: selectSelectedStudent(state, props),
         nationalities: state.nationalities.data,
         initialValues: selectStudentForm(state, props),
+        studentGetPending: state.students.get.pending,
     }),
     (dispatch) => ({
         actions: bindActionCreators({

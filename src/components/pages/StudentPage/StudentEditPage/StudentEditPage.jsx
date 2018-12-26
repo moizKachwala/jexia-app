@@ -75,7 +75,7 @@ class StudentEditPage extends Component {
 
     render() {
         const {
-            pristine, handleSubmit, submitting,
+            pristine, handleSubmit, submitting, studentGetPending,
             handleCancel, formValueSelector, nationalities, hasEditRights, isEdit, invalid
         } = this.props;
 
@@ -144,6 +144,7 @@ class StudentEditPage extends Component {
                             formValueSelector={formValueSelector}
                             nationalities={nationalities}
                             allowEdit={allowEdit}
+                            studentGetPending={studentGetPending}
                         />
                     </div>
 
