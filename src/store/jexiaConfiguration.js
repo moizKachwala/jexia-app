@@ -1,4 +1,4 @@
-const jexiaSDK = require("jexia-sdk-js/node"); 
+import * as jexiaSDK from 'jexia-sdk-js/node';
 
 export const dataModule = jexiaSDK.dataOperations();
 
