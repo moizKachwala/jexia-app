@@ -5,6 +5,7 @@ import {hashHistory} from 'react-router';
 import {routerMiddleware} from 'react-router-redux';
 
 import {reduxSagaMiddleware, initSagas} from './sagas.js';
+import {configureJexia} from './jexiaConfiguration';
 
 export default function configureStore(initialState = {}) {
 
@@ -19,6 +20,9 @@ export default function configureStore(initialState = {}) {
     const store = createStore(rootReducer, initialState, middleware);
 
     initSagas();
+
+    //initialize Jexia
+    configureJexia();
 
     return store;
 }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {StudentPage} from './pages/StudentPage';
+import {OrderPage} from './pages/OrderPage';
 
 class Root extends Component {
   render() {
     return (
       <div className="container">
-        <StudentPage/>
+        <OrderPage/>
       </div>
     );
   }
