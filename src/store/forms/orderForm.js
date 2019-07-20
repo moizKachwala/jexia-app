@@ -60,6 +60,6 @@ export const validate = (values = {}, props = {}) => {
 };
 
 export default reduxForm({
-    form: 'student',
+    form: 'order',
     validate,
 });
